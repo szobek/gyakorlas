@@ -28,12 +28,13 @@ function __construct()
                 $one = $n;
             }
         }
-    
+    $one->k=$this->explode_keywords($one->keywords);
         return $one;
     }
     
-    function explode_keywords(){
-        
+    function explode_keywords($string){
+        $keys = join(" ",explode(" ", $string));
+        return $keys;
     }
 
 }

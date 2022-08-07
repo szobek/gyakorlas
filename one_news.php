@@ -18,5 +18,6 @@ $news = $n->get_news_by_id((int)$id);
 <body>
     <h1><?php echo $news->title ?></h1>
     <p><?php echo $news->content ?></p>
+    <p>Kulcsszavak: <?php echo $news->k ?></p>
 </body>
 </html>
