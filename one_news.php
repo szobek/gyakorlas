@@ -16,6 +16,7 @@ $news = $n->get_news_by_id((int)$id);
     <?php include_once "header.php"?>
 </head>
 <body>
+<?php include_once "menu.php";?>
     <h1><?php echo $news->title ?></h1>
     <p><?php echo $news->content ?></p>
     <p>Kulcsszavak: <?php echo $news->k ?></p>
