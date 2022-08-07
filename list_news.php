@@ -18,7 +18,7 @@
     foreach ($news as $n) :
     ?>
         <ul class="list-group">
-  <li class="list-group-item"><?php echo $n->title?></li>
+  <li class="list-group-item"><a href="edit_news.php"><?php echo $n->title?></a></li>
 </ul>
     <?php
     endforeach;
