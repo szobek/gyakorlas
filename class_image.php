@@ -30,19 +30,22 @@ class Image
         switch ($imageFileType) {
             case "png":
                 $im = imagecreatefrompng($newImage);
-                $newImagePath = str_replace("png ", "webp", $newImage);
+                $newImagePath = str_replace("png", "webp", $newImage);
                 break;
             case "jpg":
-                imagecreatefromjpeg($newImage);
-                $newImagePath = str_replace("jpg ", "webp", $newImage);
+                $im = imagecreatefromjpeg($newImage);
+                $newImagePath = str_replace("jpg", "webp", $newImage);
                 break;
             case "jpeg":
-                imagecreatefromjpeg($newImage);
-                $newImagePath = str_replace("jpeg ", "webp", $newImage);
+                $im = imagecreatefromjpeg($newImage);
+                $newImagePath = str_replace("jpeg", "webp", $newImage);
                 break;
             default:
+            $im = imagecreatefrompng($newImage);
+                $newImagePath = str_replace("png", "webp", $newImage);
         }
         $quality = 100;
         imagewebp($im, $newImagePath, $quality);
+        unlink($newImage);
     }
 }
