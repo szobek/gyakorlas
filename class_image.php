@@ -19,8 +19,19 @@ class Image
         }
     }
 
-    function list_images()
-    {
+    function list_images(){
+        $pngImages = scandir('image/');
+        foreach ($pngImages as $file) {
+          if ($file !== "." && $file !== ".." && $file !== "webp") {
+            $imageName = explode(".",$file); 
+            echo '<picture>
+            <source type="image/webp" srcset="image/webp/ '.$imageName[0].'.webp">
+            <source type="image/jpeg" srcset="image/'.$imageName[0].'.'.$imageName[1].'">
+            <img src="image/'.$imageName[0].'.'.$imageName[1].'" alt="An image" title="An image " width="5%">
+           </picture>
+           ';
+          }
+        }
     }
 
     function convert_image($image, $fileName, $imageFileType)
@@ -47,5 +58,6 @@ class Image
         $quality = 100;
         imagewebp($im, $newImagePath, $quality);
         unlink($newImage);
+        header("Location:/");
     }
 }

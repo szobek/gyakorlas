@@ -12,10 +12,12 @@
 
 <body>
     <?php
-    include_once "read_news.php";
+    include_once "class_news.php";
+    include_once "class_image.php";
     include_once "menu.php";
     $n = new  News();
     $id = $_REQUEST["id"];
+    
     $news = $n->get_news_by_id((int)$id);
 
     $c = ($news->content === "") ? "" : $news->content;
@@ -23,6 +25,10 @@
     $i = ($news->image_url === "") ? "" : $news->image_url;
     $k = ($news->keywords === "") ? "" : $news->keywords;
     $ia = ($news->image_alt === "") ? "" : $news->image_alt;
+    $id = ($news->id === "") ? "-1" : $news->id;
+    $l = ($news->lead === "") ? "" : $news->lead;
+    $img_class=new Image();
+    $img_class->list_images();
     ?>
     <div class="container">
         <div class="row">
@@ -32,6 +38,11 @@
             <label for="title">title</label>
                 <div class="input-group mb-3">
                     <input type="text" id="title" value="<?php echo $t ?>" class="form-control" placeholder="title" name="title">
+                </div>
+                
+            <label for="lead">lead</label>
+                <div class="input-group mb-3">
+                    <input type="text" id="lead" value="<?php echo $l ?>" class="form-control" placeholder="lead" name="lead">
                 </div>
 
                 <label for="image_url">image_url</label>
@@ -55,6 +66,7 @@
                     <input type="text" id="image_alt" value="<?php echo $ia ?>" class="form-control" name="image_alt" placeholder="image_alt">
                 </div>
 
+                <input type="text" hidden value="<?php echo $id ?>"class="form-control" name="id"><br>
                 <button class="btn btn-peimary">Mentés</button>
             </form>
         </div>
