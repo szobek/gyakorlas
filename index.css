@@ -2,7 +2,12 @@
   background-color: #c1c1c1;
 }
 .news-container img {
-  width: 100% !important;
+  width: 100%;
+}
+
+.news-form img {
+  width: 5%;
+  cursor: pointer;
 }
 
 /*# sourceMappingURL=index.css.map */

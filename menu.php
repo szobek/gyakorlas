@@ -13,6 +13,9 @@
         <li class="nav-item">
           <a class="nav-link" href="list_news.php">lista</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="upload_image.php">kép feltötés</a>
+        </li>
         
       </ul>
     </div>

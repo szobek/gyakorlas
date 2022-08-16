@@ -28,12 +28,12 @@
     $id = ($news->id === "") ? "-1" : $news->id;
     $l = ($news->lead === "") ? "" : $news->lead;
     $img_class=new Image();
-    $img_class->list_images();
+    
     ?>
     <div class="container">
         <div class="row">
             <div class="col">
-            <form action="save_news.php" method="post">
+            <form action="save_news.php" method="post" class="news-form">
                 
             <label for="title">title</label>
                 <div class="input-group mb-3">
@@ -46,6 +46,7 @@
                 </div>
 
                 <label for="image_url">image_url</label>
+                <p><?php $img_class->list_images(); ?></p>
                 <div class="input-group mb-3">
                     <input type="text" id="image_url" value="<?php echo $i ?>" class="form-control"name="image_url" placeholder="image_url">
                 </div>
@@ -72,6 +73,7 @@
         </div>
         </div>
     </div>
+    <script src="script.js?version=<?php echo rand(1,999999) ?>"></script>
 </body>
 
 </html>

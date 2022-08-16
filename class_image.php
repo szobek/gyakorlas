@@ -23,13 +23,7 @@ class Image
         $pngImages = scandir('image/');
         foreach ($pngImages as $file) {
           if ($file !== "." && $file !== ".." && $file !== "webp") {
-            $imageName = explode(".",$file); 
-            echo '<picture>
-            <source type="image/webp" srcset="image/webp/ '.$imageName[0].'.webp">
-            <source type="image/jpeg" srcset="image/'.$imageName[0].'.'.$imageName[1].'">
-            <img src="image/'.$imageName[0].'.'.$imageName[1].'" alt="An image" title="An image " width="5%">
-           </picture>
-           ';
+            $this->seo_image($file);
           }
         }
     }
@@ -59,5 +53,23 @@ class Image
         imagewebp($im, $newImagePath, $quality);
         unlink($newImage);
         header("Location:/");
+    }
+
+    function seo_image($file, $alt = 'NULL'){
+        if(substr( $file, 0, 4 ) !== "http"){
+            $imageName = explode(".",$file);
+            if (count($imageName)<2){
+                return;
+            } 
+            echo '<picture>
+            <source type="image/webp" srcset="image/webp/ '.$imageName[0].'.webp">
+            <source type="image/jpeg" srcset="image/'.$imageName[0].'.'.$imageName[1].'">
+            <img src="image/'.$imageName[0].'.'.$imageName[1].'" alt="An image" title="An image " data-src="'.$file.'">
+           </picture>
+           ';
+        } else {
+            echo '<img src="'.$file.'" alt="'.$alt.'">';
+        }
+        
     }
 }

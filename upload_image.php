@@ -8,16 +8,7 @@
     <?php include_once "header.php" ?>
 </head>
 <body>
-<?php
-function rasmname(){
- $dirname = "./";
- $images = glob($dirname."*.jpg");
-foreach($images as $image) {
- echo '<img src="'.$image.'" /><br />';
-  }
-}
-rasmname();
-?>
+
     <form action="media.php" method="post" enctype="multipart/form-data">
         <input type="file" name="image" id="">
         <button>Mentés</button>
