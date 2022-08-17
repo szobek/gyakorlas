@@ -10,4 +10,12 @@
   cursor: pointer;
 }
 
+.one-news-container .news-content-wrapper {
+  background-color: whitesmoke;
+  font: 1.3em sans-serif;
+  padding: 3px 10px;
+  border-radius: 4px;
+  text-align: justify;
+}
+
 /*# sourceMappingURL=index.css.map */
