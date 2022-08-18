@@ -1,10 +1,10 @@
-images = [...document.querySelectorAll("img")]
 
-if(document.querySelector("#image_url")!==null){
-  images.map(i=>{
-      i.addEventListener("click",()=>{
-document.querySelector("#image_url").value = i.getAttribute("data-src")
-    })
-  })  
+imgInp.onchange = evt => {
+  const [file] = imgInp.files
+  if (file) {
+    imgName = file.name
+    console.log(file);
+    imgPreview.src = URL.createObjectURL(file)
+    document.querySelector("#image_url").value = imgName.replaceAll(" ","_")
+  }
 }
-//console.log(images);

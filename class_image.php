@@ -6,17 +6,25 @@ class Image
     function upload_image()
     {
         $target_dir = "image/";
-        $fileName = uniqid() . basename($_FILES["image"]["name"]);
+        $uid=uniqid();
+        $fileName = $uid.basename($_FILES["image"]["name"]);
         $target_file = $target_dir . $fileName;
         $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
         $enabledFormat = ["png", "jpg", "jpeg", "webp"];
+        //var_dump($imageFileType);
+        //die();
         if (!in_array($imageFileType, $enabledFormat)) {
             echo "Hibás formátum!";
         } else {
-            move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
+            if($imageFileType !== "webp"){
+                move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
 
-            $this->convert_image($target_file, $fileName, $imageFileType);
+            }else{
+                move_uploaded_file($_FILES["image"]["tmp_name"], "image/webp/".$fileName);
+                $this->convert_image($target_file, $fileName, $imageFileType);
+            }
         }
+        return $uid;
     }
 
     function list_images(){
@@ -30,29 +38,32 @@ class Image
 
     function convert_image($image, $fileName, $imageFileType)
     {
-        $newImage = "image/webp/" . $fileName;
-        copy($image, $newImage);
-        switch ($imageFileType) {
-            case "png":
+        if($imageFileType !== "webp"){
+            $newImage = "image/webp/" . $fileName;
+            copy($image, $newImage);
+            switch ($imageFileType) {
+                case "png":
+                    $im = imagecreatefrompng($newImage);
+                    $newImagePath = str_replace("png", "webp", $newImage);
+                    break;
+                case "jpg":
+                    $im = imagecreatefromjpeg($newImage);
+                    $newImagePath = str_replace("jpg", "webp", $newImage);
+                    break;
+                case "jpeg":
+                    $im = imagecreatefromjpeg($newImage);
+                    $newImagePath = str_replace("jpeg", "webp", $newImage);
+                    break;
+                default:
                 $im = imagecreatefrompng($newImage);
-                $newImagePath = str_replace("png", "webp", $newImage);
-                break;
-            case "jpg":
-                $im = imagecreatefromjpeg($newImage);
-                $newImagePath = str_replace("jpg", "webp", $newImage);
-                break;
-            case "jpeg":
-                $im = imagecreatefromjpeg($newImage);
-                $newImagePath = str_replace("jpeg", "webp", $newImage);
-                break;
-            default:
-            $im = imagecreatefrompng($newImage);
-                $newImagePath = str_replace("png", "webp", $newImage);
+                    $newImagePath = str_replace("png", "webp", $newImage);
+            }
+            $quality = 100;
+            imagewebp($im, $newImagePath, $quality);
+            unlink($newImage);
         }
-        $quality = 100;
-        imagewebp($im, $newImagePath, $quality);
-        unlink($newImage);
-        header("Location:/");
+        
+        
     }
 
     function seo_image($file, $alt = 'NULL'){

@@ -1,4 +1,5 @@
 <?php 
+include_once "class_image.php";
 
 include_once "class_news.php";
     $n = new News();
@@ -6,12 +7,13 @@ if($_REQUEST["title"]===""||$_REQUEST["keywords"]===""||$_REQUEST["image_alt"]==
     echo "Üres Mező";
     
 }else{
-
+    $image = new Image();
+   $uid = $image->upload_image();
     if($_REQUEST["id"]==="-1"){
         //új
-$n->save_news_new();
+$n->save_news_new($uid);
     } else{
         //módosítás
-$n->modify_news($_REQUEST["id"],$_REQUEST);
+$n->modify_news($_REQUEST["id"],$_REQUEST,$uid);
     }
 }

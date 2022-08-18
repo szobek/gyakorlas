@@ -48,7 +48,7 @@ class News
         }
         return $keys;
     }
-    function save_news_new()
+    function save_news_new($uid)
     {
         $newn = new stdClass;
         $file = "news.json";
@@ -57,7 +57,7 @@ class News
         $newn->lead = $_REQUEST["lead"];
         $newn->title = $_REQUEST["title"];
         $newn->content = $_REQUEST["content"];
-        $newn->image_url = $_REQUEST["image_url"];
+        $newn->image_url = $uid.$_REQUEST["image_url"];
         $newn->image_alt = $_REQUEST["image_alt"];
         $newn->keywords = $_REQUEST["keywords"];
         // print_r($newn);
@@ -115,12 +115,12 @@ class News
         }
         return $i;
     }
-    function modify_news($id, $request)
+    function modify_news($id, $request,$uid)
     {
         $index = $this->get_news_index($id);
         $this->all[$index]->title = $request["title"];
         $this->all[$index]->keywords = $request["keywords"];
-        $this->all[$index]->image_url = $request["image_url"];
+        $this->all[$index]->image_url = $uid.$request["image_url"];
         $this->all[$index]->image_alt = $request["image_alt"];
         $this->all[$index]->content = $this->remove_string_end($request["content"]);
         $this->all[$index]->lead = $request["lead"];
