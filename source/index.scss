@@ -1,7 +1,21 @@
-$light-bg:#c1c1c1;
+$light-bg:#adc5df;
+
+
+.my-btn{
+    border-radius: 30px;
+    background-color: #36f;
+    color: #fff;
+    &:hover{
+        color: #fff !important;
+    }
+}
+
 
 .news-container{
     background-color: $light-bg;
+    .card-header,.card-body,.card-footer{
+        background-color: aliceblue;
+    }
     img{
         width: 100% ;
     }

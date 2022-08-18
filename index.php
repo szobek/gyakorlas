@@ -13,7 +13,7 @@
     <?php include_once "menu.php"; ?>
     <div class="container">
         <div class="row">
-            <div class="col d-flex news-container" style="gap: 20px;flex-wrap:wrap">
+            <div class="col d-flex news-container p-3" style="gap: 20px;flex-wrap:wrap">
 
                 <?php
                 include_once "class_news.php";
@@ -32,9 +32,9 @@
                         <div class="card-body">
                             <p class="card-text"><?php echo $n->lead ?></p>
                         </div>
-                        <div class="card-footer">
+                        <div class="card-footer text-center">
 
-                            <a class="btn btn-success" href="<?php echo "one_news.php?id=" . $n->id ?>">Tovább</a>
+                            <a class="btn my-btn " href="<?php echo "one_news.php?id=" . $n->id ?>">Tovább</a>
                         </div>
                     </div>
                 <?php
