@@ -27,6 +27,4 @@
     ?>
     <li class="list-group-item"><a href="edit_news.php?id=-1">Új</a></li>
     </ul>
-</body>
-
-</html>
+    <?php include "footer.php"; ?>

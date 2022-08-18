@@ -1,17 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <?php include_once "header.php" ?>
-    <script src="https://cdn.ckeditor.com/4.19.1/standard/ckeditor.js"></script>
-</head>
-
-<body>
-    <?php
+<?php
     include_once "class_news.php";
     include_once "class_image.php";
     include_once "menu.php";
@@ -30,6 +17,21 @@
     $img_class=new Image();
     
     ?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><?php echo $t ?></title>
+    <?php include_once "header.php" ?>
+    <script src="https://cdn.ckeditor.com/4.19.1/standard/ckeditor.js"></script>
+</head>
+
+<body>
+    
     <div class="container">
         <div class="row">
             <div class="col">
@@ -51,6 +53,11 @@
                     <input type="text" id="image_url" value="<?php echo $i ?>" class="form-control"name="image_url" placeholder="image_url">
                 </div>
 
+                <label for="image_alt">Kép alt</label>
+                <div class="input-group mb-3">
+                    <input type="text" id="image_alt" value="<?php echo $ia ?>" class="form-control" name="image_alt" placeholder="image_alt">
+                </div>
+
                 <textarea style="width: 100%;" name="content"><?php echo $c ?></textarea>
                 <script>
                     CKEDITOR.replace('content');
@@ -62,10 +69,7 @@
                     <input type="text" id="keywords" name="keywords" value="<?php echo $k ?>" class="form-control" placeholder="Kulcsszavak">
                 </div>
 
-                <label for="image_alt">Kép alt</label>
-                <div class="input-group mb-3">
-                    <input type="text" id="image_alt" value="<?php echo $ia ?>" class="form-control" name="image_alt" placeholder="image_alt">
-                </div>
+                
 
                 <input type="text" hidden value="<?php echo $id ?>"class="form-control" name="id"><br>
                 <button class="btn btn-peimary">Mentés</button>
@@ -73,7 +77,4 @@
         </div>
         </div>
     </div>
-    <script src="script.js?version=<?php echo rand(1,999999) ?>"></script>
-</body>
-
-</html>
+    <?php include "footer.php"; ?>

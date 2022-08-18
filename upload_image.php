@@ -13,5 +13,4 @@
         <input type="file" name="image" id="">
         <button>Mentés</button>
     </form>
-</body>
-</html>
+    <?php include "footer.php"; ?>
