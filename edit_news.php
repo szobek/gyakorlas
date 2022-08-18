@@ -44,7 +44,7 @@
                 
             <label for="lead">lead</label>
                 <div class="input-group mb-3">
-                    <input type="text" id="lead" value="<?php echo $l ?>" class="form-control" placeholder="lead" name="lead">
+                    <textarea name="lead" id="lead" class="form-control"><?php echo $l ?></textarea>
                 </div>
 
                 <label for="image_url">image_url</label>

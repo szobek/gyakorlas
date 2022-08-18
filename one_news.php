@@ -32,7 +32,7 @@ $i = new Image();
                     <?php $i->seo_image($news->image_url, $news->image_alt); ?>
                 </div>
                 <div class="news-content-wrapper">
-
+<p><strong><?php echo $n->convert_new_line($news->lead); ?></strong></p>
                     <p><?php echo $news->content ?></p>
                 </div>
             </div>

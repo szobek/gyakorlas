@@ -22,8 +22,12 @@
   cursor: pointer;
 }
 
+.one-news-container {
+  padding-top: 10px;
+  background-color: #adc5df;
+  border-radius: 10px;
+}
 .one-news-container .news-content-wrapper {
-  background-color: whitesmoke;
   font: 1.3em sans-serif;
   padding: 3px 10px;
   border-radius: 4px;

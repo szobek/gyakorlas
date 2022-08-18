@@ -1,5 +1,5 @@
 $light-bg:#adc5df;
-
+$dark-bg:#3d6da1;
 
 .my-btn{
     border-radius: 30px;
@@ -30,10 +30,11 @@ $light-bg:#adc5df;
 }
 
 .one-news-container{
-
+padding-top: 10px ;
+background-color: $light-bg;
+border-radius: 10px;
     .news-content-wrapper{
 
-        background-color: whitesmoke;
         font: 1.3em sans-serif;
         padding: 3px 10px;
         border-radius: 4px;
