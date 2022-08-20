@@ -46,7 +46,12 @@ $img_class = new Image();
                     <div class="input-group mb-3">
                         <textarea name="lead" id="lead" class="form-control"><?php echo $l ?></textarea>
                     </div>
-
+<div id="img-view">
+<?php $img_class->seo_image($i); ?>
+<button class="btn my-btn" id="modify-btn">Módosít</button>
+</div>
+                    <div id="img-input" style="display: none;">
+                    <div class="d-flex cancel-row"> <div id="modify-btn-cancel">X</div></div>
                     <label for="image_url">image_url</label>
                     <p><input accept="image/*" type='file' id="imgInp" name="image"/>
                         <img id="imgPreview" src="#" alt="your image" />
@@ -60,6 +65,7 @@ $img_class = new Image();
                         <input type="text" id="image_alt" value="<?php echo $ia ?>" class="form-control" name="image_alt" placeholder="image_alt">
                     </div>
 
+                </div>
                     <textarea style="width: 100%;" name="content"><?php echo $c ?></textarea>
                     <script>
                         CKEDITOR.replace('content',{

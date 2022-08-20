@@ -22,7 +22,14 @@ $dark-bg:#3d6da1;
 }
 
 .news-form{
+.cancel-row{
+    justify-content: flex-end;
+    #modify-btn-cancel{
+        cursor: pointer;
+        padding: 10px;
+    }
 
+}
     img{
         width: 5%;
         cursor: pointer;

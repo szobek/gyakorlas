@@ -17,6 +17,13 @@
   width: 100%;
 }
 
+.news-form .cancel-row {
+  justify-content: flex-end;
+}
+.news-form .cancel-row #modify-btn-cancel {
+  cursor: pointer;
+  padding: 10px;
+}
 .news-form img {
   width: 5%;
   cursor: pointer;
