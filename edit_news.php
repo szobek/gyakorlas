@@ -66,10 +66,12 @@ $img_class = new Image();
                     </div>
 
                 </div>
-                    <textarea style="width: 100%;" name="content"><?php echo $c ?></textarea>
+                    <textarea name="content"><?php echo $c ?></textarea>
                     <script>
                         CKEDITOR.replace('content',{
-    removeButtons: 'Source, Form,Checkbox,PasteText, PasteFromWord,Image,Table,About'
+    removeButtons: 'Source, Form,Checkbox,PasteText, PasteFromWord,Table,About',
+    filebrowserBrowseUrl:"/uploader/upload.php",
+    filebrowserUploadUrl:"/media.php"
 });
                     </script>
                     <br>

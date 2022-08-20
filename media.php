@@ -1,4 +1,10 @@
 <?php 
+//var_dump($_REQUEST);
+//var_dump($_FILES);
 include_once "class_image.php";
 $image = new Image();
-$image->upload_image();
+$newImg=$image->upload_image("upload");
+$fileNameToStore = $newImg["filename"];
+$url = "image/".$fileNameToStore;
+$res = ['uploaded' => '1','fileName' => $fileNameToStore,'url' => $url];
+echo json_encode($res);

@@ -3,13 +3,13 @@
 class Image
 {
 
-    function upload_image()
+    function upload_image($name="image")
     {
         $target_dir = "image/";
         $uid=uniqid();
 
 
-        $fileName = $uid.basename($_FILES["image"]["name"]);
+        $fileName = $uid.basename($_FILES[$name]["name"]);
         $target_file = $target_dir . $fileName;
         $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
         $enabledFormat = ["png", "jpg", "jpeg", "webp"];
@@ -22,15 +22,16 @@ $target_file=$target_dir.$convertedName.".".$imageFileType;
         } else {
             if($imageFileType !== "webp"){
                 
-                move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
+                move_uploaded_file($_FILES[$name]["tmp_name"], $target_file);
                 
                 $this->convert_image($target_file, $convertedName.".".$imageFileType, $imageFileType);
             }else{
                 
-                move_uploaded_file($_FILES["image"]["tmp_name"], "image/webp/".$fileName);
+                move_uploaded_file($_FILES[$name]["tmp_name"], "image/webp/".$fileName);
             }
         }
-        return $uid;
+        $ret = ["uid"=>$uid,"filename"=>$convertedName.".".$imageFileType];
+        return $ret;
     }
 
     function list_images(){

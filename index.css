@@ -24,6 +24,9 @@
   cursor: pointer;
   padding: 10px;
 }
+.news-form #cke_content {
+  margin-top: 2rem;
+}
 .news-form img {
   width: 5%;
   cursor: pointer;
