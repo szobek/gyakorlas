@@ -70,7 +70,7 @@ $img_class = new Image();
                     <script>
                         CKEDITOR.replace('content',{
     removeButtons: 'Source, Form,Checkbox,PasteText, PasteFromWord,Table,About',
-    filebrowserBrowseUrl:"/uploader/upload.php",
+    filebrowserBrowseUrl:"/list_image.php",
     filebrowserUploadUrl:"/media.php"
 });
                     </script>

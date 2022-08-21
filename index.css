@@ -17,6 +17,10 @@
   width: 100%;
 }
 
+.img-list img {
+  width: 150px;
+}
+
 .news-form .cancel-row {
   justify-content: flex-end;
 }
