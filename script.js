@@ -6,7 +6,7 @@ if (document.querySelector("#imgInp")) {
       imgName = file.name
       console.log(file);
       imgPreview.src = URL.createObjectURL(file)
-      document.querySelector("#image_url").value = imgName.replaceAll(" ", "_")
+      document.querySelector("#image_url").value = imgName.replaceAll(" ", "_").replaceAll("-","_")
     }
   }
 }

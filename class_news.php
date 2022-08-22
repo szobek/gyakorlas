@@ -9,7 +9,7 @@ class News
 
         $file = "news.json";
         $text = file_get_contents($file);
-        $text = mb_convert_encoding($text, 'UTF-8', mb_detect_encoding($text, 'UTF-8, ISO-8859-1', true));
+        //$text = mb_convert_encoding($text, 'UTF-8', mb_detect_encoding($text, 'UTF-8, ISO-8859-1', true));
         $this->all = json_decode($text);
     }
 
@@ -68,9 +68,7 @@ class News
 
         $b =  stripslashes(json_encode($text));
         //print_r($b);
-
-        file_put_contents($file, "");
-        file_put_contents($file, $b);
+        $this->convert_and_put($b,false);
         header("Location:/");
     }
 
@@ -99,7 +97,7 @@ class News
                 array_push($arr, $item);
             }
         }
-        file_put_contents("news.json", json_encode($arr));
+        $this->convert_and_put($arr);
         header("Location:/");
     }
 
@@ -126,8 +124,7 @@ class News
         $this->all[$index]->image_alt = $request["image_alt"];
         $this->all[$index]->content = $this->remove_string_end($request["content"]);
         $this->all[$index]->lead = $request["lead"];
-        file_put_contents("news.json", "");
-        file_put_contents("news.json", json_encode($this->all));
+        $this->convert_and_put($this->all);
         header("Location:/");
     }
 
@@ -141,5 +138,16 @@ class News
     }
     function head_meta_desc($desc =""){
         return '<meta name="description" content="'.mb_strimwidth($desc,0,160,"...").'">';
+    }
+    function convert_and_put($arr,$je=true){
+        if( $je){
+            $text = json_encode($arr);
+        }else{
+             $text=$arr;
+        }
+        $text = mb_convert_encoding($text, 'UTF-8', mb_detect_encoding($text, 'UTF-8, ISO-8859-1', true));
+
+        file_put_contents("news.json", "");
+        file_put_contents("news.json",$text );
     }
 }
