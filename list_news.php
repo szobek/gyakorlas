@@ -17,6 +17,7 @@
 </head>
 
 <body>
+  <?php include_once "menu.php";?>
     <ul class="list-group">
     <?php
     $news = $n->get_news();
