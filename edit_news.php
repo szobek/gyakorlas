@@ -35,7 +35,7 @@ $img_class = new Image();
     <div class="container">
         <div class="row">
             <div class="col">
-                <form action="save_news.php" method="post" class="news-form"  enctype="multipart/form-data">
+                <form action="save_news.php" method="post" class="news-form" enctype="multipart/form-data">
 
                     <label for="title">title</label>
                     <div class="input-group mb-3">
@@ -46,33 +46,37 @@ $img_class = new Image();
                     <div class="input-group mb-3">
                         <textarea name="lead" id="lead" class="form-control"><?php echo $l ?></textarea>
                     </div>
-<div id="img-view">
-<?php $img_class->seo_image($i); ?>
-<button class="btn my-btn" id="modify-btn">Módosít</button>
-</div>
-                    <div id="img-input" style="display: none;">
-                    <div class="d-flex cancel-row"> <div id="modify-btn-cancel">X</div></div>
-                    <label for="image_url">image_url</label>
-                    <p><input accept="image/*" type='file' id="imgInp" name="image"/>
-                        <img id="imgPreview" src="#" alt="your image" />
-                    </p>
-                    <div class="input-group mb-3">
-                        <input type="text" id="image_url" value="<?php echo $i ?>" class="form-control" name="image_url" placeholder="image_url">
+                    <?php $show = ($_REQUEST["id"] !== "-1") ? false : true;  ?>
+                    <div id="img-view" <?php echo ($show) ? 'style="display:none"' : ''; ?>>
+                        <?php $img_class->seo_image($i); ?>
+                        <button class="btn my-btn" id="modify-btn">Módosít</button>
                     </div>
 
-                    <label for="image_alt">Kép alt</label>
-                    <div class="input-group mb-3">
-                        <input type="text" id="image_alt" value="<?php echo $ia ?>" class="form-control" name="image_alt" placeholder="image_alt">
-                    </div>
+                    <div id="img-input" <?php echo (!$show) ? 'style="display:none"' : ''; ?>>
+                        <div class="d-flex cancel-row">
+                            <div id="modify-btn-cancel">X</div>
+                        </div>
+                        <label for="image_url">image_url</label>
+                        <p><input accept="image/png,image/jpeg,image/webp" type='file' id="imgInp" name="image" />
+                            <img id="imgPreview" src="#" alt="your image" />
+                        </p>
+                        <div class="input-group mb-3">
+                            <input type="text" id="image_url" value="<?php echo $i ?>" class="form-control" name="image_url" placeholder="image_url">
+                        </div>
 
-                </div>
+                        <label for="image_alt">Kép alt</label>
+                        <div class="input-group mb-3">
+                            <input type="text" id="image_alt" value="<?php echo $ia ?>" class="form-control" name="image_alt" placeholder="image_alt">
+                        </div>
+
+                    </div>
                     <textarea name="content"><?php echo $c ?></textarea>
                     <script>
-                        CKEDITOR.replace('content',{
-    removeButtons: 'Source, Form,Checkbox,PasteText, PasteFromWord,Table,About',
-    filebrowserBrowseUrl:"/list_image.php",
-    filebrowserUploadUrl:"/media.php"
-});
+                        CKEDITOR.replace('content', {
+                            removeButtons: 'Source, Form,Checkbox,PasteText, PasteFromWord,Table,About',
+                            filebrowserBrowseUrl: "/list_image.php",
+                            filebrowserUploadUrl: "/media.php"
+                        });
                     </script>
                     <br>
 

@@ -9,6 +9,7 @@ class News
 
         $file = "news.json";
         $text = file_get_contents($file);
+        $text = mb_convert_encoding($text, 'UTF-8', mb_detect_encoding($text, 'UTF-8, ISO-8859-1', true));
         $this->all = json_decode($text);
     }
 
@@ -117,6 +118,7 @@ class News
     }
     function modify_news($id, $request,$uid)
     {
+        $uid = ($request["id"]===-1)?$uid:"";
         $index = $this->get_news_index($id);
         $this->all[$index]->title = $request["title"];
         $this->all[$index]->keywords = $request["keywords"];

@@ -1,6 +1,10 @@
 $light-bg:#adc5df;
 $dark-bg:#3d6da1;
 
+.navbar a{
+    color:$dark-bg;
+}
+
 .my-btn{
     border-radius: 30px;
     background-color: #36f;
@@ -13,8 +17,20 @@ $dark-bg:#3d6da1;
 
 .news-container{
     background-color: $light-bg;
+    gap: 20px;
+    flex-wrap:wrap;
     .card-header,.card-body,.card-footer,.card{
         background-color: aliceblue;
+    }
+    .card-header{
+        border-bottom: 0;
+    }
+    .card-footer{
+        border-top: 0;
+    }
+    .card{
+        border-radius: 8px;
+        width: 20rem;
     }
     img{
         width: 100% ;

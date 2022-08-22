@@ -1,3 +1,7 @@
+.navbar a {
+  color: #3d6da1;
+}
+
 .my-btn {
   border-radius: 30px;
   background-color: #36f;
@@ -9,9 +13,21 @@
 
 .news-container {
   background-color: #adc5df;
+  gap: 20px;
+  flex-wrap: wrap;
 }
 .news-container .card-header, .news-container .card-body, .news-container .card-footer, .news-container .card {
   background-color: aliceblue;
+}
+.news-container .card-header {
+  border-bottom: 0;
+}
+.news-container .card-footer {
+  border-top: 0;
+}
+.news-container .card {
+  border-radius: 8px;
+  width: 20rem;
 }
 .news-container img {
   width: 100%;

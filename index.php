@@ -1,7 +1,7 @@
 <?php
                 include_once "class_news.php";
                 include_once "class_image.php";
-                $n = new  News();
+                $news_class = new  News();
                 $image = new Image();
                 ?>
 <!DOCTYPE html>
@@ -13,7 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>hírek</title>
     <?php include_once "header.php";
-    echo $n->head_meta_desc("hírek");
+    echo $news_class->head_meta_desc("hírek");
     ?>
 </head>
 
@@ -21,20 +21,20 @@
     <?php include_once "menu.php"; ?>
     <div class="container">
         <div class="row">
-            <div class="col d-flex news-container p-3" style="gap: 20px;flex-wrap:wrap">
+            <div class="col d-flex news-container p-3" style="">
 
                 <?php
-                $news = $n->get_news();
+                $news = $news_class->get_news();
                 foreach ($news as $n) :
                 ?>
-                    <div class="card" style="width: 20rem;">
+                    <div class="card" >
                         <?php $image->seo_image($n->image_url, $n->image_alt); ?>
 
                         <div class="card-header">
                             <?php echo $n->title ?>
                         </div>
                         <div class="card-body">
-                            <p class="card-text"><?php echo $n->lead ?></p>
+                            <p class="card-text"><?php echo $news_class->convert_new_line($n->lead)  ?></p>
                         </div>
                         <div class="card-footer text-center">
 
