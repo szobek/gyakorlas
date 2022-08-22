@@ -1,3 +1,8 @@
+<?php
+    include_once "class_news.php";
+    $n = new  News();
+    ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,15 +11,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>hírek</title>
-   <?php include_once "header.php"?>
+    <?php include_once "header.php";
+    echo $n->head_meta_desc("hírek lista");
+    ?>
 </head>
 
 <body>
     <ul class="list-group">
     <?php
-    include_once "class_news.php";
-    include_once "menu.php";
-    $n = new  News();
     $news = $n->get_news();
     foreach ($news as $n) :
     ?>

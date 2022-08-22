@@ -1,3 +1,9 @@
+<?php
+                include_once "class_news.php";
+                include_once "class_image.php";
+                $n = new  News();
+                $image = new Image();
+                ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,7 +12,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>hírek</title>
-    <?php include_once "header.php" ?>
+    <?php include_once "header.php";
+    echo $n->head_meta_desc("hírek");
+    ?>
 </head>
 
 <body>
@@ -16,11 +24,7 @@
             <div class="col d-flex news-container p-3" style="gap: 20px;flex-wrap:wrap">
 
                 <?php
-                include_once "class_news.php";
-                include_once "class_image.php";
-                $n = new  News();
                 $news = $n->get_news();
-                $image = new Image();
                 foreach ($news as $n) :
                 ?>
                     <div class="card" style="width: 20rem;">

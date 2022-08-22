@@ -137,4 +137,7 @@ class News
     function convert_new_line($string){
         return str_replace("\r\n","<br>",$string);
     }
+    function head_meta_desc($desc =""){
+        return '<meta name="description" content="'.mb_strimwidth($desc,0,160,"...").'">';
+    }
 }
