@@ -10,7 +10,7 @@
 .news-container {
   background-color: #adc5df;
 }
-.news-container .card-header, .news-container .card-body, .news-container .card-footer {
+.news-container .card-header, .news-container .card-body, .news-container .card-footer, .news-container .card {
   background-color: aliceblue;
 }
 .news-container img {
