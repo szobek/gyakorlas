@@ -10,7 +10,8 @@ class News
         $file = "news.json";
         $text = file_get_contents($file);
         //$text = mb_convert_encoding($text, 'UTF-8', mb_detect_encoding($text, 'UTF-8, ISO-8859-1', true));
-        $this->all = json_decode($text);
+        // json_decode($a, $t, 512, JSON_UNESCAPED_UNICODE);
+        $this->all = json_decode($text, false, 512, JSON_UNESCAPED_UNICODE);
     }
 
     function get_news()
@@ -139,14 +140,16 @@ class News
     function head_meta_desc($desc =""){
         return '<meta name="description" content="'.mb_strimwidth($desc,0,160,"...").'">';
     }
-    function convert_and_put($arr,$je=true){
+    function head_meta_title($title =""){
+        return '<meta name="title" content="'.$title.'">';
+    }
+    function convert_and_put($json_string,$je=true){
         if( $je){
-            $text = json_encode($arr);
+            $text = json_encode($json_string);
         }else{
-             $text=$arr;
+             $text=$json_string;
         }
-        $text = mb_convert_encoding($text, 'UTF-8', mb_detect_encoding($text, 'UTF-8, ISO-8859-1', true));
-
+        json_encode($json_string, JSON_UNESCAPED_UNICODE);
         file_put_contents("news.json", "");
         file_put_contents("news.json",$text );
     }

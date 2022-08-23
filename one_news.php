@@ -19,6 +19,7 @@ $i = new Image();
     <?php include_once "header.php" ?>
     <meta name="keywords" content="<?php echo $news->k ?>">
     <?php echo $n->head_meta_desc($news->lead);  ?>
+    <?php echo $n->head_meta_title($news->title);  ?>
 </head>
 
 <body>
