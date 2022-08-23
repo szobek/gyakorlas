@@ -23,7 +23,7 @@ class News
     {
         //var_dump($id);
         $one = new stdClass;
-        if ($id === -1) {
+        if ($id === -1 ||$id === "-1" )  {
             $one =  $this->set_empty_value();
         }
         //var_dump($one);
