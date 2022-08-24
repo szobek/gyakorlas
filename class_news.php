@@ -9,13 +9,9 @@ class News
 
         $file = "news.json";
         $text = file_get_contents($file);
-        $this->all =  $this->convert_string_after_get($text);
+        $this->all = json_decode($text);
     }
     
-function convert_string_after_get($text){
-    return json_decode($text, false, 512, JSON_UNESCAPED_UNICODE);
-}
-
     function get_news()
     {
         return $this->all;
@@ -64,7 +60,7 @@ function convert_string_after_get($text){
         array_push($text, $newn);
 
 
-        $b =  stripslashes(json_encode($text));
+        $b =  stripslashes(json_encode( $text, JSON_UNESCAPED_UNICODE ));
         $this->convert_and_put($b,false);
         header("Location:/");
     }
@@ -140,18 +136,12 @@ function convert_string_after_get($text){
         return '<meta name="title" content="'.$title.'">';
     }
 
-    function convert_string_before_put($json_string){
-
-        return utf8_decode(htmlentities($json_string)) ;
-    }
-
     function convert_and_put($json_string,$je=true){
         if( $je){
             $text = json_encode($json_string);
         }else{
              $text=$json_string;
             }
-            $$text = $this->convert_string_before_put($json_string);
         file_put_contents("news.json", "");
         file_put_contents("news.json",$text );
     }

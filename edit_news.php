@@ -5,8 +5,7 @@ include_once "menu.php";
 $n = new  News();
 $id = $_REQUEST["id"];
 
-$news = $n->get_news_by_id((int)$id);
-
+$news = $n->get_news_by_id($id);
 $c = ($news->content === "") ? "" : $news->content;
 $t = ($news->title === "") ? "" : $news->title;
 $i = ($news->image_url === "") ? "" : $news->image_url;

@@ -18,11 +18,14 @@
 
 <body>
   <?php include_once "menu.php";?>
-    <ul class="list-group">
-    <?php
+  <div class="container list-news-container">
+    <div class="row">
+      <div class="col">
+        <ul class="list-group">
+          <?php
     $news = $n->get_news();
     foreach ($news as $n) :
-    ?>
+      ?>
   <li class="list-group-item"><a href="<?php echo "one_news.php?id=" . $n->id ?>"><?php echo $n->title?></a> <div class="button-container">
     <a class="btn btn-danger"href="delete_news.php?id=<?php echo $n->id?>">x</a>
     <a class="btn btn-success" href="edit_news.php?id=<?php echo $n->id?>">modify</a>
@@ -31,5 +34,9 @@
     endforeach;
     ?>
     <li class="list-group-item"><a href="edit_news.php?id=-1">Új</a></li>
-    </ul>
+  </ul>
+  
+</div>
+</div>
+</div>
     <?php include "footer.php"; ?>

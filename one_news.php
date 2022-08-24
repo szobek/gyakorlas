@@ -3,7 +3,7 @@ include_once "class_news.php";
 include_once "class_image.php";
 $id = $_REQUEST["id"];
 $n = new News();
-$news = $n->get_news_by_id((int)$id);
+$news = $n->get_news_by_id($id);
 $i = new Image();
 
 ?>
