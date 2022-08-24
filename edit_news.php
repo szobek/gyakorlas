@@ -1,7 +1,6 @@
 <?php
 include_once "class_news.php";
 include_once "class_image.php";
-include_once "menu.php";
 $n = new  News();
 $id = $_REQUEST["id"];
 

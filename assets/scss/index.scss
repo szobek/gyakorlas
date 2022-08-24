@@ -1,80 +1,107 @@
-$light-bg:#aeccec;
-$dark-bg:#316cac;
-$btn-text:#fff;
-$news-card-bg:aliceblue;
+$light-bg: #aeccec;
+$dark-bg: #316cac;
+$btn-text: #fff;
+$news-card-bg: aliceblue;
 
+nav {
+    background-color: $light-bg;
 
-
-.navbar a{
-    color:$dark-bg;
+    a {
+        color: $dark-bg;
+    }
 }
 
-.my-btn{
+
+.my-btn {
     border-radius: 30px;
     background-color: #36f;
     color: $btn-text;
-    &:hover{
-        color: $btn-text !important;
+
+    &:hover {
+        color: $btn-text  !important;
     }
 }
 
 
-.news-container{
+.news-container {
     background-color: $light-bg;
     gap: 20px;
-    flex-wrap:wrap;
-    .card-header,.card-body,.card-footer,.card{
+    flex-wrap: wrap;
+    margin-top: 2rem;
+    border-radius: 4px;
+
+    .card-header,
+    .card-body,
+    .card-footer,
+    .card {
         background-color: $news-card-bg;
     }
-    .card-header{
+
+    .card-header {
         border-bottom: 0;
+        font-weight: bold;
     }
-    .card-footer{
+
+    .card-footer {
         border-top: 0;
     }
-    .card{
+
+    .card {
         border-radius: 8px;
         width: 20rem;
+
+        img {
+            border-radius: 7px 7px 0 0;
+        }
     }
-    img{
-        width: 100% ;
+
+    img {
+        width: 100%;
     }
 }
 
-.img-list{
-    img{
+.img-list {
+    img {
         width: 150px;
     }
 }
 
-.news-form{
-.cancel-row{
-    justify-content: flex-end;
-    #modify-btn-cancel{
-        cursor: pointer;
-        padding: 10px;
+.news-form {
+    .cancel-row {
+        justify-content: flex-end;
+
+        #modify-btn-cancel {
+            cursor: pointer;
+            padding: 10px;
+        }
+
     }
 
-}
-#cke_content{
-    margin-top: 2rem;
-    
-}
-    img{
+    #cke_content {
+        margin-top: 2rem;
+
+    }
+
+    img {
         width: 5%;
         cursor: pointer;
     }
 }
 
-.one-news-container{
-padding-top: 10px ;
-background-color: $light-bg;
-border-radius: 10px;
-margin: 3rem auto;
-img{
-    width: 100%;
-}
-    .news-content-wrapper{
+.one-news-container {
+    padding-top: 10px;
+    background-color: $light-bg;
+    border-radius: 10px;
+    margin: 3rem auto;
+
+    img {
+        width: 100%;
+    }
+
+    .news-content-wrapper {
+        p.news-lead {
+            margin-top: 2rem;
+        }
 
         font: 1.3em sans-serif;
         padding: 3px 10px;
@@ -82,10 +109,21 @@ img{
         text-align: justify;
     }
 }
-.list-news-container{
-    .list-group-item{
+
+.list-news-container {
+    ul{
+        margin-top: 2rem;
+    }
+    .list-group-item {
         display: flex;
         width: 100%;
         justify-content: space-between;
+        &:nth-child(odd){
+            a{
+                color: white;
+            }
+            background-color: $light-bg;
+    
+        }
     }
 }

@@ -21,7 +21,7 @@
   <div class="container list-news-container">
     <div class="row">
       <div class="col">
-        <ul class="list-group">
+        <ul class="list-group ">
           <?php
     $news = $n->get_news();
     foreach ($news as $n) :
