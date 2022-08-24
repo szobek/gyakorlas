@@ -27,8 +27,8 @@
     foreach ($news as $n) :
       ?>
   <li class="list-group-item"><a href="<?php echo "one_news.php?id=" . $n->id ?>"><?php echo $n->title?></a> <div class="button-container">
-    <a class="btn btn-danger"href="delete_news.php?id=<?php echo $n->id?>">x</a>
-    <a class="btn btn-success" href="edit_news.php?id=<?php echo $n->id?>">modify</a>
+    <a class="btn btn-danger"href="delete_news.php?id=<?php echo $n->id?>"><i class="fa fa-window-close" aria-hidden="true"></i></a>
+    <a class="btn btn-success" href="edit_news.php?id=<?php echo $n->id?>"><i class="fa fa-pencil"></i></a>
   </div></li>
   <?php
     endforeach;

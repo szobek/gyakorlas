@@ -29,7 +29,7 @@ $img_class = new Image();
 </head>
 
 <body>
-
+<?php include_once "menu.php"; ?>
     <div class="container">
         <div class="row">
             <div class="col">

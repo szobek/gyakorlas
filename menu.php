@@ -11,7 +11,7 @@
           <a class="nav-link" href="/">Hírek</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="list_news.php">lista</a>
+          <a class="nav-link" href="list_news.php">Lista</a>
         </li>
         
         
