@@ -29,8 +29,8 @@ $img_class = new Image();
 </head>
 
 <body>
-<?php include_once "menu.php"; ?>
-    <div class="container">
+    <?php include_once "menu.php"; ?>
+    <div class="container my-4">
         <div class="row">
             <div class="col">
                 <form action="save_news.php" method="post" class="news-form" enctype="multipart/form-data">
@@ -68,10 +68,10 @@ $img_class = new Image();
                         </div>
 
                     </div>
-                    <textarea name="content" ><?php echo $c ?></textarea>
+                    <textarea name="content"><?php echo $c ?></textarea>
                     <script>
                         CKEDITOR.replace('content', {
-                            height:400,
+                            height: 400,
                             removeButtons: 'Source, Form,Checkbox,PasteText, PasteFromWord,Table,About',
                             filebrowserBrowseUrl: "/list_image.php",
                             filebrowserUploadUrl: "/media.php"
@@ -87,7 +87,10 @@ $img_class = new Image();
 
 
                     <input type="text" hidden value="<?php echo $id ?>" class="form-control" name="id"><br>
-                    <button class="btn btn-peimary">Mentés</button>
+
+                    <button class="btn btn-primary">
+                        <i class="fa fa-file-text" aria-hidden="true"></i>
+                    </button>
                 </form>
             </div>
         </div>
