@@ -1,5 +1,9 @@
 $light-bg:#aeccec;
 $dark-bg:#316cac;
+$btn-text:#fff;
+$news-card-bg:aliceblue;
+
+
 
 .navbar a{
     color:$dark-bg;
@@ -8,9 +12,9 @@ $dark-bg:#316cac;
 .my-btn{
     border-radius: 30px;
     background-color: #36f;
-    color: #fff;
+    color: $btn-text;
     &:hover{
-        color: #fff !important;
+        color: $btn-text !important;
     }
 }
 
@@ -20,7 +24,7 @@ $dark-bg:#316cac;
     gap: 20px;
     flex-wrap:wrap;
     .card-header,.card-body,.card-footer,.card{
-        background-color: aliceblue;
+        background-color: $news-card-bg;
     }
     .card-header{
         border-bottom: 0;

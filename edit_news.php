@@ -38,7 +38,7 @@ $img_class = new Image();
 
                     <label for="title">title</label>
                     <div class="input-group mb-3">
-                        <input type="text" id="title" value="<?php echo $t ?>" class="form-control" placeholder="title" name="title">
+                        <input autocomplete="off" type="text" id="title" value="<?php echo $t ?>" class="form-control" placeholder="title" name="title">
                     </div>
 
                     <label for="lead">lead</label>
@@ -56,16 +56,16 @@ $img_class = new Image();
                             <div id="modify-btn-cancel">X</div>
                         </div>
                         <label for="image_url">image_url</label>
-                        <p><input accept="image/png,image/jpeg,image/webp" type='file' id="imgInp" name="image" />
+                        <p><input autocomplete="off" accept="image/png,image/jpeg,image/webp" type='file' id="imgInp" name="image" />
                             <img id="imgPreview" src="#" alt="your image" />
                         </p>
                         <div class="input-group mb-3">
-                            <input type="text" id="image_url" value="<?php echo $i ?>" class="form-control" name="image_url" placeholder="image_url">
+                            <input autocomplete="off" type="text" id="image_url" value="<?php echo $i ?>" class="form-control" name="image_url" placeholder="image_url">
                         </div>
 
                         <label for="image_alt">Kép alt</label>
                         <div class="input-group mb-3">
-                            <input type="text" id="image_alt" value="<?php echo $ia ?>" class="form-control" name="image_alt" placeholder="image_alt">
+                            <input autocomplete="off" type="text" id="image_alt" value="<?php echo $ia ?>" class="form-control" name="image_alt" placeholder="image_alt">
                         </div>
 
                     </div>
@@ -81,7 +81,7 @@ $img_class = new Image();
 
                     <label for="keywords">Kulcsszavak</label>
                     <div class="input-group mb-3">
-                        <input type="text" id="keywords" name="keywords" value="<?php echo $k ?>" class="form-control" placeholder="Kulcsszavak">
+                        <input autocomplete="off" type="text" id="keywords" name="keywords" value="<?php echo $k ?>" class="form-control" placeholder="Kulcsszavak">
                     </div>
 
 
