@@ -1,7 +1,7 @@
 <?php 
 
 include_once "check_logged.php";
-include_once "class_image.php";
+include_once "classes/class_image.php";
 $image = new Image();
 $newImg=$image->upload_image("upload");
 $fileNameToStore = $newImg["filename"];

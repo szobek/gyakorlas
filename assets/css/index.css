@@ -1,0 +1,135 @@
+nav {
+  background-color: #aeccec;
+  margin-bottom: 2rem;
+}
+nav a {
+  color: #316cac;
+}
+nav ul.navbar-nav {
+  width: 100%;
+  justify-content: space-between;
+}
+nav ul.navbar-nav li.nav-item {
+  display: block;
+}
+
+.my-btn {
+  border-radius: 30px;
+  background-color: #36f;
+  color: #fff;
+}
+.my-btn:hover {
+  color: #fff !important;
+}
+
+.news-container {
+  background-color: #aeccec;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+  border-radius: 4px;
+}
+.news-container .card-header,
+.news-container .card-body,
+.news-container .card-footer,
+.news-container .card {
+  background-color: aliceblue;
+}
+.news-container .card-header {
+  border-bottom: 0;
+  font-weight: bold;
+}
+.news-container .card-footer {
+  border-top: 0;
+}
+.news-container .card {
+  border-radius: 8px;
+  width: 20rem;
+}
+.news-container .card img {
+  border-radius: 7px 7px 0 0;
+}
+.news-container img {
+  width: 100%;
+}
+
+.img-list img {
+  width: 150px;
+}
+
+.news-form .cancel-row {
+  justify-content: flex-end;
+}
+.news-form .cancel-row #modify-btn-cancel {
+  cursor: pointer;
+  padding: 10px;
+}
+.news-form #cke_content {
+  margin-top: 2rem;
+}
+.news-form img {
+  width: 5%;
+  cursor: pointer;
+}
+
+.one-news-container {
+  padding-top: 10px;
+  background-color: #aeccec;
+  border-radius: 10px;
+  margin: 3rem auto;
+}
+.one-news-container img {
+  width: 100%;
+}
+.one-news-container .news-content-wrapper {
+  font: 1.3em sans-serif;
+  padding: 3px 10px;
+  border-radius: 4px;
+  text-align: justify;
+}
+.one-news-container .news-content-wrapper p.news-lead {
+  margin-top: 2rem;
+}
+.one-news-container .kw {
+  padding: 3px;
+  font-size: 12px;
+}
+
+.list-news-container ul {
+  margin-top: 2rem;
+}
+.list-news-container .list-group-item {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+.list-news-container .list-group-item:nth-child(odd) {
+  background-color: #aeccec;
+}
+.list-news-container .list-group-item:nth-child(odd) a {
+  color: white;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+}
+
+#login .container #login-row #login-column #login-box {
+  margin-top: 120px;
+  max-width: 600px;
+  height: 320px;
+  border: 1px solid #9C9C9C;
+  background-color: #EAEAEA;
+}
+
+#login .container #login-row #login-column #login-box #login-form {
+  padding: 20px;
+}
+
+#login .container #login-row #login-column #login-box #login-form #register-link {
+  margin-top: -85px;
+}
+
+/*# sourceMappingURL=index.css.map */

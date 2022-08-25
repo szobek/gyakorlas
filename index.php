@@ -1,7 +1,7 @@
 <?php
 session_start();
-                include_once "class_news.php";
-                include_once "class_image.php";
+                include_once "classes/class_news.php";
+                include_once "classes/class_image.php";
                 $news_class = new  News();
                 $image = new Image();
                 ?>

@@ -1,6 +1,6 @@
 <?php
 include_once "check_logged.php";
-    include_once "class_news.php";
+    include_once "classes/class_news.php";
     $n = new  News();
     ?>
 

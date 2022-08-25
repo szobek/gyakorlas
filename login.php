@@ -1,6 +1,6 @@
 <?php
 session_start();
- include_once "class_user.php";
+ include_once "classes/class_user.php";
 if(!empty($_REQUEST["email"]) && !empty($_REQUEST["password"]) ){
     $user_class = new User();
     $fn = $user_class->login();
