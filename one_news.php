@@ -30,11 +30,15 @@ $i = new Image();
         <div class="row">
             <div class="col one-news-container">
                 <div class="text-center">
-                    <?php $i->seo_image($news->image_url, $news->image_alt); ?>
+                    <p><?php $i->seo_image($news->image_url, $news->image_alt);
+                     ?></p>
+                    <p><small><i><?php echo $news->image_alt;?></i></small></p>
+                    
                 </div>
                 <div class="news-content-wrapper">
 <p class="news-lead"><strong><?php echo $n->convert_new_line($news->lead); ?></strong></p>
                     <p><?php echo $news->content ?></p>
+                    <p class="kw">Kulcszavak: <?php echo $news->k ?></p>
                 </div>
             </div>
         </div>

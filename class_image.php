@@ -91,7 +91,7 @@ class Image
             class="photo-item" 
             data-src="' . $file . '"
             src="image/' . $imageName[0] . '.' . $imageName[1] . '" 
-            alt="An image" 
+            alt="'.$alt.'" 
             title="An image " 
            </picture>
            ';

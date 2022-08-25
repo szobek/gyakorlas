@@ -83,6 +83,10 @@ nav a {
 .one-news-container .news-content-wrapper p.news-lead {
   margin-top: 2rem;
 }
+.one-news-container .kw {
+  padding: 3px;
+  font-size: 12px;
+}
 
 .list-news-container ul {
   margin-top: 2rem;
