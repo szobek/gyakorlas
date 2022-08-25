@@ -5,6 +5,13 @@ nav {
 nav a {
   color: #316cac;
 }
+nav ul.navbar-nav {
+  width: 100%;
+  justify-content: space-between;
+}
+nav ul.navbar-nav li.nav-item {
+  display: block;
+}
 
 .my-btn {
   border-radius: 30px;

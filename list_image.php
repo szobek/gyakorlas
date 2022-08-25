@@ -1,4 +1,5 @@
 <?php
+include_once "check_logged.php";
 include_once "class_image.php";
 $img_class = new Image();
 

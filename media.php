@@ -1,6 +1,6 @@
 <?php 
-//var_dump($_REQUEST);
-//var_dump($_FILES);
+
+include_once "check_logged.php";
 include_once "class_image.php";
 $image = new Image();
 $newImg=$image->upload_image("upload");

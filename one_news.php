@@ -1,4 +1,5 @@
 <?php
+session_start();
 include_once "class_news.php";
 include_once "class_image.php";
 $id = $_REQUEST["id"];

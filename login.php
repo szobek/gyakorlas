@@ -1,3 +1,28 @@
+<?php
+session_start();
+ include_once "class_user.php";
+if(!empty($_REQUEST["email"]) && !empty($_REQUEST["password"]) ){
+    $user_class = new User();
+    $fn = $user_class->login();
+    $logged = $fn["logged"];
+    if($logged){
+        $user = $fn["user"];
+$_SESSION["logged"] = true;
+$_SESSION["user"] = $user;
+
+header("Location:/");
+    } else{
+        echo "Hibás adatok!";
+    }
+}
+if(array_key_exists("logged",$_SESSION)){
+    if($_SESSION["logged"]){
+
+        header("Location:/");
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,16 +42,16 @@
                         <form id="login-form" class="form" action="" method="post">
                             <h3 class="text-center text-info">Login</h3>
                             <div class="form-group">
-                                <label for="username" class="text-info">Username:</label><br>
-                                <input type="text" name="username" id="username" class="form-control">
+                                <label for="username" class="text-info">E-mail:</label><br>
+                                <input type="text" name="email"  class="form-control" value="kunszt.norbert@gmail.com">
                             </div>
                             <div class="form-group">
                                 <label for="password" class="text-info">Password:</label><br>
-                                <input type="text" name="password" id="password" class="form-control">
+                                <input type="password" name="password" class="form-control" value="123456">
                             </div>
                             <div class="form-group">
                             
-                                <input type="submit" name="submit" class="btn btn-info btn-md" value="submit">
+                                <input type="submit"  class="btn btn-info btn-md" value="submit">
                             </div>
                             
                         </form>
