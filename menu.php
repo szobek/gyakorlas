@@ -13,6 +13,9 @@
         <li class="nav-item">
           <a class="nav-link" href="list_news.php">Lista</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="login.php">login</a>
+        </li>
         
         
       </ul>
