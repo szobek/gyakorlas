@@ -42,10 +42,12 @@ $img_class = new Image();
 
                     <label for="lead">lead</label>
                     <div class="input-group mb-3">
-                        <textarea name="lead" id="lead" class="form-control"><?php echo $l ?></textarea>
+                        <textarea rows="6" name="lead" id="lead" class="form-control"><?php echo $l ?></textarea>
                     </div>
+
+
                     <?php $show = ($_REQUEST["id"] !== "-1") ? false : true;  ?>
-                    <div id="img-view" <?php echo ($show) ? 'style="display:none"' : ''; ?>>
+                    <div id="img-view" class="text-center" <?php echo ($show) ? 'style="display:none"' : ''; ?>>
                         <?php $img_class->seo_image($i); ?>
                         <button class="btn my-btn" id="modify-btn">Módosít</button>
                     </div>
@@ -56,7 +58,7 @@ $img_class = new Image();
                         </div>
                         <label for="image_url">image_url</label>
                         <p><input autocomplete="off" accept="image/png,image/jpeg,image/webp" type='file' id="imgInp" name="image" />
-                            <img id="imgPreview" src="#" alt="your image" />
+                            <img id="imgPreview" src="#" alt="your image" style="display: none;" />
                         </p>
                         <div class="input-group mb-3">
                             <input autocomplete="off" type="text" id="image_url" value="<?php echo $i ?>" class="form-control" name="image_url" placeholder="image_url">
@@ -79,7 +81,7 @@ $img_class = new Image();
                     </script>
                     <br>
 
-                    <label for="keywords">Kulcsszavak</label>
+                    <label for="keywords">Kulcsszavak(space-szel elválasztva)</label>
                     <div class="input-group mb-3">
                         <input autocomplete="off" type="text" id="keywords" name="keywords" value="<?php echo $k ?>" class="form-control" placeholder="Kulcsszavak">
                     </div>
@@ -87,10 +89,12 @@ $img_class = new Image();
 
 
                     <input type="text" hidden value="<?php echo $id ?>" class="form-control" name="id"><br>
+<p class="text-right">
 
-                    <button class="btn btn-primary">
-                        <i class="fa fa-file-text" aria-hidden="true"></i>
-                    </button>
+    <button class="btn btn-primary">
+        <i class="fa fa-file-text" aria-hidden="true"></i>
+    </button>
+</p>
                 </form>
             </div>
         </div>
