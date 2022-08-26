@@ -14,7 +14,7 @@ class User
     {
         foreach ($this->allUser as $user) {
             if ($_REQUEST["email"] === $user->email) {
-                var_dump($this->hash_password($_REQUEST["password"]));
+                
                 if($this->hash_password($_REQUEST["password"]) === $user->password){
                     $user = ["logged"=>true,"id"=>$user->id,"user"=>$user];
                     return $user;
@@ -28,8 +28,13 @@ class User
     {
     }
 
-    function setLogged()
+    function setLoggedAndAddData($session,$fn)
     {
+        $user = $fn["user"];
+$session["logged"] = true;
+$session["user"] = $user;
+
+return $session;
     }
 
     

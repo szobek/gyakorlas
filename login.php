@@ -6,9 +6,8 @@ if(!empty($_REQUEST["email"]) && !empty($_REQUEST["password"]) ){
     $fn = $user_class->login();
     $logged = $fn["logged"];
     if($logged){
-        $user = $fn["user"];
-$_SESSION["logged"] = true;
-$_SESSION["user"] = $user;
+        
+        $_SESSION = $user_class->setLoggedAndAddData($_SESSION,$fn);
 
 header("Location:/");
     } else{
