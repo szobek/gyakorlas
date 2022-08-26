@@ -1,4 +1,5 @@
 <?php 
+session_start();
 include_once "check_logged.php";
 include_once "classes/class_image.php";
 
@@ -14,9 +15,9 @@ if($_REQUEST["title"]===""||$_REQUEST["keywords"]===""||$_REQUEST["image_alt"]==
    //die();
     if($_REQUEST["id"]==="-1"){
         //új
-$n->save_news_new($uid);
+$n->save_news_new($uid,$_SESSION);
     } else{
         //módosítás
-$n->modify_news($_REQUEST["id"],$_REQUEST,$uid);
+$n->modify_news($_REQUEST["id"],$_REQUEST,$uid,$_SESSION);
     }
 }

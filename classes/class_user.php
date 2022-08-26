@@ -24,8 +24,15 @@ class User
         return $user = ["logged"=>false];
         return $user;;
     }
-    function loggedUser()
+    function getUserById($id)
     {
+        $logged = NULL;
+        foreach ($this->allUser as $user) {
+            if ($id === $user->id) {
+$logged=$user;
+            }
+        }
+        return $logged;
     }
 
     function setLoggedAndAddData($session,$fn)

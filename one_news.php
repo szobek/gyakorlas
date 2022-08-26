@@ -2,11 +2,12 @@
 session_start();
 include_once "classes/class_news.php";
 include_once "classes/class_image.php";
+include_once "classes/class_user.php";
 $id = $_REQUEST["id"];
 $n = new News();
 $news = $n->get_news_by_id($id);
 $i = new Image();
-
+$user_class = new User();
 ?>
 
 <!DOCTYPE html>
@@ -39,6 +40,10 @@ $i = new Image();
                 <div class="news-content-wrapper">
 <p class="news-lead"><strong><?php echo $n->convert_new_line($news->lead); ?></strong></p>
                     <p><?php echo $news->content ?></p>
+                    <p><small>Szerző: <?php 
+                    $user = $user_class->getUserById($news->author);
+                    echo $user->firstName . " ".$user->lastName;
+                    ?></small></p>
                     <p class="kw">Kulcszavak: <?php echo $news->k ?></p>
                 </div>
             </div>

@@ -45,7 +45,7 @@ class News
         }
         return $keys;
     }
-    function save_news_new($uid)
+    function save_news_new($uid,$session)
     {
         $newn = new stdClass;
         $file = "assets/jsons/news.json";
@@ -57,6 +57,7 @@ class News
         $newn->image_url = $uid.$_REQUEST["image_url"];
         $newn->image_alt = $_REQUEST["image_alt"];
         $newn->keywords = $_REQUEST["keywords"];
+        $newn->author = $session["user"]->id;
         array_push($text, $newn);
 
 
@@ -75,6 +76,7 @@ class News
         $one->image_alt = "";
         $one->keywords = "";
         $one->id = "";
+        $one->author = "";
         return $one;
     }
     
@@ -107,7 +109,7 @@ class News
         }
         return $i;
     }
-    function modify_news($id, $request,$uid)
+    function modify_news($id, $request,$uid,$session)
     {
         $uid = ($request["id"]!=="-1")?$uid:"";
         $index = $this->get_news_index($id);
@@ -117,6 +119,7 @@ class News
         $this->all[$index]->image_alt = $request["image_alt"];
         $this->all[$index]->content = $this->remove_string_end($request["content"]);
         $this->all[$index]->lead = $request["lead"];
+        $this->all[$index]->author = $session["user"]->id;
         //var_dump($uid,$request["id"]);
         //die();
         $this->convert_and_put($this->all);
