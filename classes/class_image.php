@@ -79,7 +79,6 @@ class Image
             if (count($imageName) < 2) {
                 return;
             }
-
             echo '<picture >
             <source type="../image/webp" srcset="image/webp/' . $imageName[0] . '.webp">
             <source type="../image/jpeg" srcset="image/' . $imageName[0] . '.' . $imageName[1] . '">

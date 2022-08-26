@@ -12,8 +12,9 @@ nav {
     }
 
     ul.navbar-nav {
-width: 100%;
-justify-content: space-between;
+        width: 100%;
+        justify-content: space-between;
+
         li.nav-item {
             display: block;
         }
@@ -166,7 +167,7 @@ body {
     height: 100vh;
 }
 
-#login .container #login-row #login-column #login-box {
+#login-box {
     margin-top: 120px;
     max-width: 600px;
     height: 320px;
@@ -174,10 +175,29 @@ body {
     background-color: #EAEAEA;
 }
 
-#login .container #login-row #login-column #login-box #login-form {
+#login-form {
     padding: 20px;
 }
 
-#login .container #login-row #login-column #login-box #login-form #register-link {
-    margin-top: -85px;
+#register-link {
+    margin-top: -65px;
+}
+
+
+
+
+
+
+
+
+
+.card-registration .select-input.form-control[readonly]:not([disabled]) {
+    font-size: 1rem;
+    line-height: 2.15;
+    padding-left: .75em;
+    padding-right: .75em;
+}
+
+.card-registration .select-arrow {
+    top: 13px;
 }

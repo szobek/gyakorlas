@@ -3,11 +3,12 @@
 class User
 {
     public $allUser = [];
+    public $file = "assets/jsons/users.json";
     function __construct()
     {
-        $file = "users.json";
-        $text = file_get_contents($file);
+        $text = file_get_contents($this->file);
         $this->allUser = json_decode($text);
+        
     }
     function login()
     {
@@ -30,4 +31,19 @@ class User
     {
     }
 
+    
+    function getAllUser()
+    {
+        return $this->allUser;
+    }
+
+
+    function registration($text)
+    {
+        file_put_contents("assets/jsons/users.json", "");
+        file_put_contents("assets/jsons/users.json",$text );
+    }
+
 }
+
+

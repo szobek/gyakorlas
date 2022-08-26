@@ -1,10 +1,16 @@
 [
     {
-        "id":"plk599",
-        "firstName":"Norbert",
-        "lastName":"Kunszt",
-        "picture":"",
-        "email":"kunszt.norbert@gmail.com",
-        "password":"123456"
+        "id": "plkka99857",
+        "firstName": "Kunszt",
+        "lastName": "Norbert",
+        "password": "aa",
+        "email": "kunszt.norbert@gmail.com"
+    },
+    {
+        "id": "6307c769dfdbc",
+        "firstName": "Kunszt",
+        "lastName": "Norbert",
+        "password": "123456",
+        "email": "kunszt.norbert@gmail.com"
     }
 ]

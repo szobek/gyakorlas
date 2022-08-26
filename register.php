@@ -1,0 +1,103 @@
+<?php
+include_once "classes/class_user.php";
+if(!empty($_REQUEST["email"]) && !empty($_REQUEST["password"]) ){
+    $emptyArray =[];
+    $user_class = new User();
+   $newUser=new stdClass;
+   $newUser->id = uniqid();
+   $newUser->firstName = $_REQUEST["firstName"];
+   $newUser->lastName = $_REQUEST["lastName"];
+   $newUser->password = $_REQUEST["password"];
+   $newUser->email = $_REQUEST["email"];
+   $allUser = $user_class->getAllUser();
+$newArray=array_merge($emptyArray,$allUser);
+array_push($newArray,$newUser);
+//var_dump($newArray);
+        //die();
+        $user_class->registration(json_encode( $newArray, JSON_UNESCAPED_UNICODE ));
+        //header("Location:/");
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <?php include_once "header.php"; ?>
+</head>
+<body>
+<section class="vh-100">
+  <div class="container py-5 h-100">
+    <div class="row justify-content-center align-items-center h-100">
+      <div class="col-12 col-lg-9 col-xl-7">
+        <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+          <div class="card-body p-4 p-md-5">
+            <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Registration Form</h3>
+
+            <form method="post" action="">
+
+              <div class="row">
+                <div class="col-md-6 mb-4">
+
+                  <div class="form-outline">
+                    <input type="text" id="firstName" name="firstName" class="form-control form-control-lg" />
+                    <label class="form-label" for="firstName">First Name</label>
+                  </div>
+
+                </div>
+                <div class="col-md-6 mb-4">
+
+                  <div class="form-outline">
+                    <input type="text" id="lastName" name="lastName" class="form-control form-control-lg" />
+                    <label class="form-label" for="lastName">Last Name</label>
+                  </div>
+
+                </div>
+              </div>
+
+              
+
+
+              <div class="row">
+                <div class="col-md-6 mb-4 pb-2">
+
+                  <div class="form-outline">
+                    <input type="email" id="emailAddress" name="email" class="form-control form-control-lg" />
+                    <label class="form-label" for="emailAddress">Email</label>
+                  </div>
+
+                </div>
+                <div class="col-md-6 mb-4 pb-2">
+                <div class="form-outline">
+                    <input type="password" name="password"  class="form-control form-control-lg" />
+                    <label class="form-label" for="emailAddress">Password</label>
+                  </div>
+
+
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-12">
+
+                </div>
+              </div>
+
+              <div class="mt-4 pt-2">
+                <input class="btn btn-primary btn-lg" type="submit" value="Submit" />
+              </div>
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>    
+</body>
+</html>
+
+

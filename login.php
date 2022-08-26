@@ -50,10 +50,11 @@ if(array_key_exists("logged",$_SESSION)){
                                 <input type="password" name="password" class="form-control" value="123456">
                             </div>
                             <div class="form-group">
-                            
-                                <input type="submit"  class="btn btn-info btn-md" value="submit">
+                                <input type="submit" name="submit" class="btn btn-info btn-md" value="submit">
                             </div>
-                            
+                            <div id="register-link" class="text-right">
+                                <a href="register.php" class="text-info">Regisztrácó</a>
+                            </div>
                         </form>
                     </div>
                 </div>

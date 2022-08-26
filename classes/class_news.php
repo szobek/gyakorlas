@@ -48,7 +48,7 @@ class News
     function save_news_new($uid)
     {
         $newn = new stdClass;
-        $file = "news.json";
+        $file = "assets/jsons/news.json";
         $text = json_decode(file_get_contents($file));
         $newn->id = uniqid();
         $newn->lead = $_REQUEST["lead"];
@@ -109,7 +109,7 @@ class News
     }
     function modify_news($id, $request,$uid)
     {
-        $uid = ($request["id"]===-1)?$uid:"";
+        $uid = ($request["id"]!=="-1")?$uid:"";
         $index = $this->get_news_index($id);
         $this->all[$index]->title = $request["title"];
         $this->all[$index]->keywords = $request["keywords"];
@@ -117,6 +117,8 @@ class News
         $this->all[$index]->image_alt = $request["image_alt"];
         $this->all[$index]->content = $this->remove_string_end($request["content"]);
         $this->all[$index]->lead = $request["lead"];
+        //var_dump($uid,$request["id"]);
+        //die();
         $this->convert_and_put($this->all);
         header("Location:/");
     }
