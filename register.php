@@ -8,7 +8,7 @@ if (!empty($_REQUEST["email"]) && !empty($_REQUEST["password"])) {
   $newUser->id = uniqid();
   $newUser->firstName = $_REQUEST["firstName"];
   $newUser->lastName = $_REQUEST["lastName"];
-  $newUser->password = $_REQUEST["password"];
+  $newUser->password = $user_class->hash_password($_REQUEST["password"]);
   $newUser->email = $_REQUEST["email"];
   $allUser = $user_class->getAllUser();
   $newArray = array_merge($emptyArray, $allUser);
@@ -35,7 +35,7 @@ if (!empty($_REQUEST["email"]) && !empty($_REQUEST["password"])) {
 </head>
 
 <body>
-  <?php echo  ($alert)?'<div class="alert alert-success text-center">Sikeres regisztráció</div>':""?>
+  <?php echo  ($alert)?'<div class="alert alert-success text-center">Sikeres regisztráció <a href="login.php"> Bejentkezés</a></div>':""?>
   <section class="vh-100">
     <div class="container py-5 h-100">
       <div class="row justify-content-center align-items-center h-100">

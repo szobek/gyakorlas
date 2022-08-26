@@ -14,7 +14,8 @@ class User
     {
         foreach ($this->allUser as $user) {
             if ($_REQUEST["email"] === $user->email) {
-                if($_REQUEST["password"] === $user->password){
+                var_dump($this->hash_password($_REQUEST["password"]));
+                if($this->hash_password($_REQUEST["password"]) === $user->password){
                     $user = ["logged"=>true,"id"=>$user->id,"user"=>$user];
                     return $user;
                 }
@@ -43,6 +44,11 @@ class User
         file_put_contents("assets/jsons/users.json", "");
         file_put_contents("assets/jsons/users.json",$text );
         return true;
+    }
+    function hash_password($password){
+        $salt="ijiod";
+return crypt($password,$salt);
+
     }
 
 }
