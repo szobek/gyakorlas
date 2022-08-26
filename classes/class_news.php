@@ -150,4 +150,14 @@ class News
         file_put_contents("assets/jsons/news.json", "");
         file_put_contents("assets/jsons/news.json",$text );
     }
+
+    function get_news_by_author($author){
+        $arr = [];
+        foreach ($this->all as $item) {
+            if ($item->author === $author) {
+              array_push($arr,$item);
+            } 
+        }
+        return $arr;
+    }
 }
