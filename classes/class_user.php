@@ -42,6 +42,7 @@ class User
     {
         file_put_contents("assets/jsons/users.json", "");
         file_put_contents("assets/jsons/users.json",$text );
+        return true;
     }
 
 }
