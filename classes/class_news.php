@@ -28,10 +28,12 @@ class News
                 $one = $n;
             }
         }
-        if ($one->content === "" || empty($one)) {
-            $one = $this->set_empty_value();
+       
+        if(isset($one->keywords)){
+
+            $one->k = $this->explode_keywords($one->keywords);
         }
-        $one->k = $this->explode_keywords($one->keywords);
+        
         return $one;
     }
     

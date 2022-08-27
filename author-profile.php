@@ -27,6 +27,11 @@ $id=$_REQUEST["id"];
                 <div class="author-data">
                 <p>Név: <?php 
                     $user = $user_class->getUserById($id);
+                    
+                    if(empty($user)){
+                        echo "Nem találtam ilyen szerzőt!";
+                        die();
+                    }
                     echo $user->firstName . " ".$user->lastName;
                     ?></p>
                 <p>E-mail: <?php echo $user->email; ?></p>

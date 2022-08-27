@@ -6,6 +6,13 @@ include_once "classes/class_user.php";
 $id = $_REQUEST["id"];
 $n = new News();
 $news = $n->get_news_by_id($id);
+//var_dump($news);
+//die();
+
+if(!isset($news->content)){
+    echo "Nem találtam ilyen hírt!";
+    die();
+}
 $i = new Image();
 $user_class = new User();
 ?>
