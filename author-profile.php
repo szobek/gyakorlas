@@ -20,16 +20,22 @@ $id=$_REQUEST["id"];
     <?php include_once "header.php";    ?>
 </head>
 <body>
+<?php include_once "menu.php"; ?>
     <div class="container">
         <div class="row">
-            <div class="col">
+            <div class="col  author-container">
+                <div class="author-data">
                 <p>Név: <?php 
                     $user = $user_class->getUserById($id);
                     echo $user->firstName . " ".$user->lastName;
                     ?></p>
                 <p>E-mail: <?php echo $user->email; ?></p>
-                <p>Cikkek: </p>
-                <?php
+                </div>
+                
+                <h1 class="text-center">Cikkek: </h1>
+                <div class="d-flex p-2 authors-news-container">
+
+                    <?php
                 $news = $news_class->get_news_by_author($user->id);
                 foreach ($news as $n) :
                 ?>
@@ -50,6 +56,7 @@ $id=$_REQUEST["id"];
                 <?php
                 endforeach;
                 ?>
+        </div>
             </div>
         </div>
     </div>

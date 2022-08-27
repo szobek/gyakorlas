@@ -22,7 +22,7 @@ nav ul.navbar-nav li.nav-item {
   color: #fff !important;
 }
 
-.news-container {
+.news-container, .authors-news-container {
   background-color: #aeccec;
   gap: 20px;
   flex-wrap: wrap;
@@ -32,24 +32,27 @@ nav ul.navbar-nav li.nav-item {
 .news-container .card-header,
 .news-container .card-body,
 .news-container .card-footer,
-.news-container .card {
+.news-container .card, .authors-news-container .card-header,
+.authors-news-container .card-body,
+.authors-news-container .card-footer,
+.authors-news-container .card {
   background-color: aliceblue;
 }
-.news-container .card-header {
+.news-container .card-header, .authors-news-container .card-header {
   border-bottom: 0;
   font-weight: bold;
 }
-.news-container .card-footer {
+.news-container .card-footer, .authors-news-container .card-footer {
   border-top: 0;
 }
-.news-container .card {
+.news-container .card, .authors-news-container .card {
   border-radius: 8px;
   width: 20rem;
 }
-.news-container .card img {
+.news-container .card img, .authors-news-container .card img {
   border-radius: 7px 7px 0 0;
 }
-.news-container img {
+.news-container img, .authors-news-container img {
   width: 100%;
 }
 
