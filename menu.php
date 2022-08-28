@@ -1,3 +1,9 @@
+<?php
+//var_dump($_SESSION);
+
+?>
+
+
 <nav class="navbar navbar-expand-lg">
   <div class="container-fluid">
     <a class="navbar-brand" href="/">Hírek Portál</a>
@@ -27,6 +33,7 @@
                 <span class="caret"></span>
               </button>
               <ul class="dropdown-menu">
+                <li><a href="user-profile.php">Profil</a></li>
                 <li><a href="list_news.php">Lista</a></li>
                 <li><a href="logout.php">Logout</a></li>
               </ul>

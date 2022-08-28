@@ -57,10 +57,42 @@ return $session;
         file_put_contents("assets/jsons/users.json",$text );
         return true;
     }
+
+
     function hash_password($password){
         $salt="ijiod";
 return crypt($password,$salt);
 
+    }
+
+
+
+    function modify_logged_user($session, $request){
+        $arr = [];
+        $response = false;
+        foreach ($this->allUser as $user) {
+            if ($session["user"]->id === $user->id) {
+                $session["user"]->firstName = $request["firstName"];
+                $session["user"]->lastName = $request["lastName"];
+                $user->firstName = $request["firstName"];
+                $user->lastName = $request["lastName"];
+                if($request["passwordNew"]===$request["passwordNew2"]){
+                    $user->password = $this->hash_password($request["passwordNew2"]);
+                } else{
+                    die("Eltérő jelszavak");
+                }
+                array_push($arr, $user);
+
+            }else{
+
+                array_push($arr, $user);
+            }
+        }
+        $text = json_encode($arr, JSON_UNESCAPED_UNICODE);
+        file_put_contents("assets/jsons/users.json", "");
+        file_put_contents("assets/jsons/users.json",$text );
+        $response = true;
+        return $response;
     }
 
 }

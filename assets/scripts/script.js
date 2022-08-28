@@ -25,3 +25,18 @@ if(document.querySelector("#img-view")){
   })
 
 }
+
+if(document.querySelector("#profile-form")){
+  $("#btn-modify-profile").on('click',()=>{
+    $("#profile-form").show()
+    $("#btn-modify-profile-cancel").show()
+    $("#profile-container").hide()
+
+  })
+  $("#btn-modify-profile-cancel").on('click',()=>{
+    $("#profile-form").hide()
+    $("#btn-modify-profile-cancel").hide()
+    $("#profile-container").show()
+
+  })
+}
