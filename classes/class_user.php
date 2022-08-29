@@ -15,7 +15,7 @@ class User
         foreach ($this->allUser as $user) {
             if ($_REQUEST["email"] === $user->email) {
                 
-                if($this->hash_password($_REQUEST["password"]) === $user->password){
+                if(password_verify($_REQUEST["password"],$user->password)){
                     $user = ["logged"=>true,"id"=>$user->id,"user"=>$user];
                     return $user;
                 }
@@ -60,8 +60,7 @@ return $session;
 
 
     function hash_password($password){
-        $salt="ijiod";
-return crypt($password,$salt);
+    return password_hash($password, PASSWORD_ARGON2I);
 
     }
 
