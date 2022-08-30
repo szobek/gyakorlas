@@ -40,3 +40,7 @@ if(document.querySelector("#profile-form")){
 
   })
 }
+
+$(".up").on("click",()=>{
+  $('html, body').animate({ scrollTop: 0 }, 'fast');
+})

@@ -23,8 +23,13 @@ $p = (isset($_REQUEST["p"])) ? $_REQUEST["p"] : 1;
     <?php include_once "menu.php"; ?>
     <div class="container">
         <div class="row">
-            <div class="col d-flex news-container p-3">
+            <div class="col text-center">
 
+                <h1>Főoldal</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col d-flex justify-content-center news-container p-3">
                 <?php
                 $news = $news_class->show_sliced_news($p);
                 foreach ($news as $n) :
@@ -53,10 +58,13 @@ $p = (isset($_REQUEST["p"])) ? $_REQUEST["p"] : 1;
     </div>
     <div class="container">
         <div class="row">
-            <div class="col-12 m-4 text-center">
+            <div class="col-4 offset-4 mt-4 ">
                 <?php
                 $news_class->show_pagination($p);
                 ?>
+                <div class="up">
+                <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                </div>
             </div>
         </div>
     </div>
