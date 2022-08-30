@@ -26,12 +26,16 @@ class User
     }
     function getUserById($id)
     {
-        $logged = NULL;
+        $logged = new stdClass;
+        $logged->firstName = "";
+        $logged->firstName = "";
+        
         foreach ($this->allUser as $user) {
             if ($id === $user->id) {
 $logged=$user;
             }
         }
+        
         return $logged;
     }
 

@@ -49,6 +49,7 @@ $user_class = new User();
                     <p><?php echo $news->content ?></p>
                     <p><small>Szerző: <a href="author-profile.php?id=<?php echo $news->author; ?>"> <?php 
                     $user = $user_class->getUserById($news->author);
+                    
                     echo $user->firstName . " ".$user->lastName;
                     ?></a></small></p>
                     <p class="kw">Kulcszavak: <?php echo $news->k ?></p>
