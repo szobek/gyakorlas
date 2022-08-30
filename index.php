@@ -1,10 +1,11 @@
 <?php
 session_start();
-                include_once "classes/class_news.php";
-                include_once "classes/class_image.php";
-                $news_class = new  News();
-                $image = new Image();
-                ?>
+include_once "classes/class_news.php";
+include_once "classes/class_image.php";
+$news_class = new  News();
+$image = new Image();
+$p = (isset($_REQUEST["p"])) ? $_REQUEST["p"] : 1;
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,20 +23,21 @@ session_start();
     <?php include_once "menu.php"; ?>
     <div class="container">
         <div class="row">
-            <div class="col d-flex news-container p-3" style="">
+            <div class="col d-flex news-container p-3">
 
                 <?php
-                $news = $news_class->get_news();
+                $news = $news_class->show_sliced_news($p);
                 foreach ($news as $n) :
                 ?>
-                    <div class="card" >
+                    <div class="card">
                         <?php $image->seo_image($n->image_url, $n->image_alt); ?>
 
                         <div class="card-header">
-                            <?php echo mb_strimwidth($n->lead,0,60,"...")  ?>
+                            <?php //echo mb_strimwidth($n->lead, 0, 60, "...")  ?>
+                            <?php echo $n->title  ?>
                         </div>
                         <div class="card-body">
-                            <p class="card-text"><?php echo mb_strimwidth($n->content,0,60,"...")  ?></p>
+                            <p class="card-text"><?php echo mb_strimwidth($n->content, 0, 60, "...")  ?></p>
                         </div>
                         <div class="card-footer text-center">
 
@@ -44,8 +46,20 @@ session_start();
                     </div>
                 <?php
                 endforeach;
+
                 ?>
             </div>
         </div>
     </div>
-<?php include "footer.php"; ?>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 m-4 text-center">
+                <?php
+                $news_class->show_pagination($p);
+                ?>
+            </div>
+        </div>
+    </div>
+    <?php
+
+    include "footer.php"; ?>
