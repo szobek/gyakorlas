@@ -52,7 +52,11 @@ $user_class = new User();
                     
                     echo $user->firstName . " ".$user->lastName;
                     ?></a></small></p>
-                    <p class="kw">Kulcszavak: <?php echo $news->k ?></p>
+                    <div>Kulcszavak: <?php 
+                     foreach($news->k as $keyword){
+                        echo '<div class="kw">'.$keyword . " </div>";
+                     }
+                     ?></div>
                 </div>
             </div>
         </div>

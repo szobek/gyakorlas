@@ -124,12 +124,20 @@ $news-card-bg: aliceblue;
         padding: 3px 10px;
         border-radius: 4px;
         text-align: justify;
+        .kw{
+            background-color: #e7e7e7;
+            padding: 4px;
+            border-radius: 3px;
+            margin: 5px;
+            cursor: pointer;
+            text-align: center;
+            width: fit-content;
+            display: inline-block;
+            font-size: 11px;
+        }
     }
 
-    .kw {
-        padding: 3px;
-        font-size: 12px;
-    }
+   
 }
 
 .list-news-container {

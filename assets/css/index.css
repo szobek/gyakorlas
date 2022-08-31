@@ -100,9 +100,16 @@
 .one-news-container .news-content-wrapper p.news-lead {
   margin-top: 2rem;
 }
-.one-news-container .kw {
-  padding: 3px;
-  font-size: 12px;
+.one-news-container .news-content-wrapper .kw {
+  background-color: #e7e7e7;
+  padding: 4px;
+  border-radius: 3px;
+  margin: 5px;
+  cursor: pointer;
+  text-align: center;
+  width: fit-content;
+  display: inline-block;
+  font-size: 11px;
 }
 
 .list-news-container ul {

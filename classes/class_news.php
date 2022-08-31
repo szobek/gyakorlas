@@ -32,7 +32,8 @@ class News
 
         if (isset($one->keywords)) {
 
-            $one->k = $this->explode_keywords($one->keywords);
+            $one->k = $this->explode_keywords_to_strings($one->keywords);
+            
         }
 
         return $one;
@@ -218,5 +219,15 @@ class News
             $valid = true;
         }
         return $valid;
+    }
+
+    function explode_keywords_to_strings($kw){
+        if (strpos($kw, ' ') !== false) {
+            $keys =  explode(" ", $kw);
+        } else {
+            $keys = $kw;
+        }
+        
+        return $keys;
     }
 }
