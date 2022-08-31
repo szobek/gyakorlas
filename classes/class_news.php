@@ -39,16 +39,7 @@ class News
         return $one;
     }
 
-    function explode_keywords($string)
-    {
-
-        if (strpos($string, ' ') !== false) {
-            $keys = join(" ", explode(" ", $string));
-        } else {
-            $keys = $string;
-        }
-        return $keys;
-    }
+    
     function save_news_new($uid, $session)
     {
         $newn = new stdClass;
@@ -70,7 +61,7 @@ class News
         header("Location:/");
     }
 
-    function set_empty_value()
+    function set_empty_value():stdClass
     {
         $one = new stdClass;
         $one->title = "";
@@ -222,12 +213,30 @@ class News
     }
 
     function explode_keywords_to_strings($kw){
+        $keys=[];
         if (strpos($kw, ' ') !== false) {
             $keys =  explode(" ", $kw);
         } else {
-            $keys = $kw;
+            array_push($keys,$kw);
         }
-        
+    
         return $keys;
+    }
+
+    function get_news_by_kw($keyword):array{
+        $arr = [];
+        
+        foreach ($this->all as $item) {
+            $keywords=$this->explode_keywords_to_strings($item->keywords);
+      //  var_dump($keywords);
+    //die();
+            if (is_numeric(array_search($keyword,$keywords))) {
+                array_push($arr, $item);
+            }
+        }
+  //      var_dump($arr);
+//die();
+         
+        return $arr;        
     }
 }

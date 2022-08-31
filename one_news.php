@@ -54,7 +54,7 @@ $user_class = new User();
                     ?></a></small></p>
                     <div>Kulcszavak: <?php 
                      foreach($news->k as $keyword){
-                        echo '<div class="kw">'.$keyword . " </div>";
+                        echo '<div class="kw"><a href="news_by_keyword.php?kw='.$keyword.'">'.$keyword . " </a></div>";
                      }
                      ?></div>
                 </div>
