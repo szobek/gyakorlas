@@ -3,7 +3,14 @@ session_start();
 include_once "classes/class_news.php";
 include_once "classes/class_image.php";
 include_once "classes/class_user.php";
-$kw = $_REQUEST["kw"];
+
+if(isset($_REQUEST["kw"])){
+    $kw = $_REQUEST["kw"];
+    
+
+} else {
+    die("hibás kulcsszó");
+}
 $news_class = new News();
 $image_class = new Image();
 $user_class = new User();
@@ -15,7 +22,7 @@ $user_class = new User();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Hírek kulcsszó szerint</title>
     <?php include_once "header.php";?>
 </head>
 <body>

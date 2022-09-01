@@ -3,7 +3,14 @@ session_start();
 include_once "classes/class_news.php";
 include_once "classes/class_image.php";
 include_once "classes/class_user.php";
-$id = $_REQUEST["id"];
+
+if(isset($_REQUEST["id"])){
+    $id = $_REQUEST["id"];
+    
+
+} else {
+    die("hibás id");
+}
 $n = new News();
 $news = $n->get_news_by_id($id);
 //var_dump($news);
