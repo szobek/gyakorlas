@@ -2,18 +2,9 @@
 include_once "classes/class_user.php";
 $alert = false;
 if (!empty($_REQUEST["email"]) && !empty($_REQUEST["password"])) {
-  $emptyArray = [];
   $user_class = new User();
-  $newUser = new stdClass;
-  $newUser->id = uniqid();
-  $newUser->firstName = $_REQUEST["firstName"];
-  $newUser->lastName = $_REQUEST["lastName"];
-  $newUser->password = $user_class->hash_password($_REQUEST["password"]);
-  $newUser->email = $_REQUEST["email"];
-  $allUser = $user_class->getAllUser();
-  $newArray = array_merge($emptyArray, $allUser);
-  array_push($newArray, $newUser);
-  if($user_class->registration(json_encode($newArray, JSON_UNESCAPED_UNICODE))){
+ 
+  if($user_class->registration( $_REQUEST)){
     $alert = true;
   }
   else{

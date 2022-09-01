@@ -55,8 +55,22 @@ return $session;
     }
 
 
-    function registration($text)
+    function registration($request)
     {
+        $emptyArray = [];
+        
+        $newUser = new stdClass;
+        $newUser->id = uniqid();
+        $newUser->firstName = $request["firstName"];
+        $newUser->lastName = $request["lastName"];
+        $newUser->password = $this->hash_password($request["password"]);
+        $newUser->email = $request["email"];
+        $allUser = $this->getAllUser();
+        //var_dump($allUser);
+        //die();
+        $newArray = array_merge($emptyArray, $allUser);
+        array_push($newArray, $newUser);
+        $text=json_encode($newArray, JSON_UNESCAPED_UNICODE);
         file_put_contents("assets/jsons/users.json", "");
         file_put_contents("assets/jsons/users.json",$text );
         return true;
