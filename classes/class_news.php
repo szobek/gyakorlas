@@ -109,8 +109,11 @@ class News
         $uid = ($request["id"] !== "-1") ? $uid : "";
         $index = $this->get_news_index($id);
         $this->all[$index]->title = $request["title"];
-        $this->all[$index]->keywords = $request["keywords"];
-        $this->all[$index]->image_url = $uid . $request["image_url"];
+        $this->all[$index]->keywords = trim($request["keywords"]);
+        if($request["modify-image"] === "on"){
+
+            $this->all[$index]->image_url = $uid . $request["image_url"];
+        }
         $this->all[$index]->image_alt = $request["image_alt"];
         $this->all[$index]->content = $this->remove_string_end($request["content"]);
         $this->all[$index]->lead = $request["lead"];
@@ -172,26 +175,31 @@ param $a actual page num
         $a = (int)$a;
         $this->sliced = $this->show_sliced_news();
         $allpage = count($this->all) / $this->perpage;
-       /*  var_dump($allpage);
+        /*  var_dump($allpage);
         die(); */
         $prev = ($a <= 1) ? '' : '<li class="page-item"><a class="page-link" href="?p=' . ($a - 1) . '">Előző</a></li>';
-        $next = ($allpage > $a) ? '<li class="page-item"><a class="page-link" href="?p=' . ($a + 1) . '">Következő</a></li>' : '' ;
+        $next = ($allpage > $a) ? '<li class="page-item"><a class="page-link" href="?p=' . ($a + 1) . '">Következő</a></li>' : '';
         echo '<ul class="pagination">' . $prev;
 
-/*          var_dump($a===1);
+        /*          var_dump($a===1);
         die();
- */             echo ($a>1)? '<li class="page-item "><a class="page-link" href="?p=1">Első</a></li>':'';
-            echo ($a-2>1)?'<li class="page-item ">...</li>':'';
-            echo ($a-2>=1)?'<li class="page-item "><a class="page-link" href="?p=' . ($a-2) . '">' . ($a-2) . '</a></li>':'';
-            echo ($a-1>=1 )?'<li class="page-item "><a class="page-link" href="?p=' . ($a-1) . '">' . ($a-1) . '</a></li>':'';
-            echo '<li class="page-item active"><a class="page-link" href="?p=' . ($a) . '">' . ($a) . '</a></li>';
-            echo ($a<round($allpage)+1)?'<li class="page-item "><a class="page-link" href="?p=' . ($a+1) . '">' . ($a+1) . '</a></li>':'';
-            echo ($a<round($allpage)+1)?'<li class="page-item "><a class="page-link" href="?p=' . ($a+2) . '">' . ($a+2) . '</a></li>':'';
-            echo ($a+2<round($allpage)+1)?'<li class="page-item ">...</li>':'';
-            echo ($a < (round($allpage)+1))? '<li class="page-item "><a class="page-link" href="?p=' . (round($allpage)+1) . '">Utolsó</a></li>':'';
-       
+ */
 
-        echo $next . '</ul>';
+        if ($a > 5) {
+
+            echo ($a > 1) ? '<li class="page-item "><a class="page-link" href="?p=1">Első</a></li>' : '';
+            echo ($a - 2 > 1) ? '<li class="page-item ">...</li>' : '';
+            echo ($a - 2 >= 1) ? '<li class="page-item "><a class="page-link" href="?p=' . ($a - 2) . '">' . ($a - 2) . '</a></li>' : '';
+            echo ($a - 1 >= 1) ? '<li class="page-item "><a class="page-link" href="?p=' . ($a - 1) . '">' . ($a - 1) . '</a></li>' : '';
+            echo '<li class="page-item active"><a class="page-link" href="?p=' . ($a) . '">' . ($a) . '</a></li>';
+            echo ($a < round($allpage) + 1) ? '<li class="page-item "><a class="page-link" href="?p=' . ($a + 1) . '">' . ($a + 1) . '</a></li>' : '';
+            echo ($a < round($allpage) + 1) ? '<li class="page-item "><a class="page-link" href="?p=' . ($a + 2) . '">' . ($a + 2) . '</a></li>' : '';
+            echo ($a + 2 < round($allpage) + 1) ? '<li class="page-item ">...</li>' : '';
+            echo ($a < (round($allpage) + 1)) ? '<li class="page-item "><a class="page-link" href="?p=' . (round($allpage) + 1) . '">Utolsó</a></li>' : '';
+
+
+            echo $next . '</ul>';
+        }
     }
     function show_sliced_news($page = 0)
     {

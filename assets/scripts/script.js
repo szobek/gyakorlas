@@ -6,6 +6,7 @@ if (document.querySelector("#imgInp")) {
       imgName = file.name
       imgPreview.src = URL.createObjectURL(file)
       document.querySelector("#image_url").value = imgName.replaceAll(" ", "_").replaceAll("-","_")
+      document.querySelector("#modify-image").checked=true
       $("#imgPreview").show()
     }
   }

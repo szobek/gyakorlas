@@ -38,8 +38,7 @@ $p = (isset($_REQUEST["p"])) ? $_REQUEST["p"] : 1;
                         <?php $image->seo_image($n->image_url, $n->image_alt); ?>
 
                         <div class="card-header">
-                            <?php //echo mb_strimwidth($n->lead, 0, 60, "...")  ?>
-                            <?php echo $n->title  ?>
+                            <?php echo mb_strimwidth($n->lead, 0, 60, "...")  ?>
                         </div>
                         <div class="card-body">
                             <p class="card-text"><?php echo mb_strimwidth($n->content, 0, 60, "...")  ?></p>

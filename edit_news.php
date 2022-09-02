@@ -95,6 +95,7 @@ $img_class = new Image();
 
 
                     <input type="text" hidden value="<?php echo $id ?>" class="form-control" name="id"><br>
+                    <input type="checkbox"  hidden name="modify-image" id="modify-image"><br>
 <p class="text-right">
 
     <button class="btn btn-primary">

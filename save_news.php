@@ -18,6 +18,8 @@ if($_REQUEST["title"]===""||$_REQUEST["keywords"]===""||$_REQUEST["image_alt"]==
 $n->save_news_new($uid,$_SESSION);
     } else{
         //módosítás
+        /* var_dump($_REQUEST);
+        die(); */
 $n->modify_news($_REQUEST["id"],$_REQUEST,$uid,$_SESSION);
     }
 }

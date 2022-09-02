@@ -28,7 +28,7 @@ class User
     {
         $logged = new stdClass;
         $logged->firstName = "";
-        $logged->firstName = "";
+        $logged->lastName = "";
         
         foreach ($this->allUser as $user) {
             if ($id === $user->id) {
