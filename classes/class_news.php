@@ -5,6 +5,7 @@ class News
 {
     public $all = [];
     public $sliced = [];
+    public $perpage = 10;
     function __construct()
     {
 
@@ -33,13 +34,12 @@ class News
         if (isset($one->keywords)) {
 
             $one->k = $this->explode_keywords_to_strings($one->keywords);
-            
         }
 
         return $one;
     }
 
-    
+
     function save_news_new($uid, $session)
     {
         $newn = new stdClass;
@@ -61,7 +61,7 @@ class News
         header("Location:/");
     }
 
-    function set_empty_value():stdClass
+    function set_empty_value(): stdClass
     {
         $one = new stdClass;
         $one->title = "";
@@ -160,51 +160,60 @@ class News
         }
         return $arr;
     }
-
-    function show_pagination($a)
+    /*
+param $a actual page num
+*/
+    function show_pagination(string $a)
     {
         if (intval($a) < 1) {
             die("Hibás oldalszám");
         }
         //$news_num = count($this->sliced);
         $a = (int)$a;
-        $i = 1;
         $this->sliced = $this->show_sliced_news();
-        //var_dump($a);
-        //die();
+        $allpage = count($this->all) / $this->perpage;
+       /*  var_dump($allpage);
+        die(); */
         $prev = ($a <= 1) ? '' : '<li class="page-item"><a class="page-link" href="?p=' . ($a - 1) . '">Előző</a></li>';
-        $next = (count($this->sliced) === $a) ? "" : '<li class="page-item"><a class="page-link" href="?p=' . ($a + 1) . '">Következő</a></li>';
+        $next = ($allpage > $a) ? '<li class="page-item"><a class="page-link" href="?p=' . ($a + 1) . '">Következő</a></li>' : '' ;
         echo '<ul class="pagination">' . $prev;
 
+/*          var_dump($a===1);
+        die();
+ */             echo ($a>1)? '<li class="page-item "><a class="page-link" href="?p=1">Első</a></li>':'';
+            echo ($a-2>1)?'<li class="page-item ">...</li>':'';
+            echo ($a-2>=1)?'<li class="page-item "><a class="page-link" href="?p=' . ($a-2) . '">' . ($a-2) . '</a></li>':'';
+            echo ($a-1>=1 )?'<li class="page-item "><a class="page-link" href="?p=' . ($a-1) . '">' . ($a-1) . '</a></li>':'';
+            echo '<li class="page-item active"><a class="page-link" href="?p=' . ($a) . '">' . ($a) . '</a></li>';
+            echo ($a<round($allpage)+1)?'<li class="page-item "><a class="page-link" href="?p=' . ($a+1) . '">' . ($a+1) . '</a></li>':'';
+            echo ($a<round($allpage)+1)?'<li class="page-item "><a class="page-link" href="?p=' . ($a+2) . '">' . ($a+2) . '</a></li>':'';
+            echo ($a+2<round($allpage)+1)?'<li class="page-item ">...</li>':'';
+            echo ($a < (round($allpage)+1))? '<li class="page-item "><a class="page-link" href="?p=' . (round($allpage)+1) . '">Utolsó</a></li>':'';
+       
 
-        foreach ($this->sliced as $link) {
-            $active = ($i === (int)$a) ? ' active' : '';
-            echo '<li class="page-item ' . $active . '">
-<a class="page-link" href="?p=' . $i . '">' . $i . '</a>
-</li>';
-            $i++;
-        }
         echo $next . '</ul>';
     }
-    function show_sliced_news($page = 0, $perpage = 5)
+    function show_sliced_news($page = 0)
     {
 
-        if(!$this->check_page($page)){
+        if (!$this->check_page($page)) {
             die("Hibás oldal");
         } else {
             $page = intval($page);
         }
-        $from = ($page * $perpage) - $perpage;
-        $sliced = array_slice($this->all, $from, $perpage);
-        $this->sliced = $sliced;
+        $from = ($page * $this->perpage) - $this->perpage;
+        $sliced = array_slice($this->all, $from, $this->perpage);
+        $this->sliced = $sliced; //5öt kivág
+        /*        var_dump($sliced);
+        die(); */
         return $sliced;
     }
 
     function check_page($page)
     {
         $valid = false;
-        
-        if (!preg_match("/[0-9]/",$page) ) {
+
+        if (!preg_match("/[0-9]/", $page)) {
             $page = intval($page);
         } else {
             $valid = true;
@@ -212,31 +221,33 @@ class News
         return $valid;
     }
 
-    function explode_keywords_to_strings($kw){
-        $keys=[];
+    function explode_keywords_to_strings($kw)
+    {
+        $keys = [];
         if (strpos($kw, ' ') !== false) {
             $keys =  explode(" ", $kw);
         } else {
-            array_push($keys,$kw);
+            array_push($keys, $kw);
         }
-    
+
         return $keys;
     }
 
-    function get_news_by_kw($keyword):array{
+    function get_news_by_kw($keyword): array
+    {
         $arr = [];
-        
+
         foreach ($this->all as $item) {
-            $keywords=$this->explode_keywords_to_strings($item->keywords);
-      //  var_dump($keywords);
-    //die();
-            if (is_numeric(array_search($keyword,$keywords))) {
+            $keywords = $this->explode_keywords_to_strings($item->keywords);
+            //  var_dump($keywords);
+            //die();
+            if (is_numeric(array_search($keyword, $keywords))) {
                 array_push($arr, $item);
             }
         }
-  //      var_dump($arr);
-//die();
-         
-        return $arr;        
+        //      var_dump($arr);
+        //die();
+
+        return $arr;
     }
 }

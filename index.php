@@ -58,7 +58,7 @@ $p = (isset($_REQUEST["p"])) ? $_REQUEST["p"] : 1;
     </div>
     <div class="container">
         <div class="row">
-            <div class="col-4 offset-4 mt-4 ">
+            <div class="col mt-4 ">
                 <?php
                 $news_class->show_pagination($p);
                 ?>
