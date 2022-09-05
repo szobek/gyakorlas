@@ -127,6 +127,14 @@
   color: white;
 }
 
+.e404 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30rem;
+  color: darkorange;
+}
+
 body {
   margin: 0;
   padding: 0;
