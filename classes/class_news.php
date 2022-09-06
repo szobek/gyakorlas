@@ -211,8 +211,14 @@ param $a actual page num
             $page = intval($page);
         }
         $from = ($page * $this->perpage) - $this->perpage;
-        $sliced = array_slice($this->all, $from, $this->perpage);
-        $this->sliced = $sliced; //5öt kivág
+        if(is_array($this->all)){
+            $sliced = array_slice($this->all, $from, $this->perpage);
+            $this->sliced = $sliced; //5öt kivág
+        }else{
+
+            $sliced = [];
+            $this->sliced = [];
+        }
         /*        var_dump($sliced);
         die(); */
         return $sliced;
