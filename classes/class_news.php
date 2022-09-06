@@ -203,6 +203,7 @@ param $a actual page num
     }
     function show_sliced_news($page = 0)
     {
+        $from = [];
 
         if (!$this->check_page($page)) {
             die("Hibás oldal");
