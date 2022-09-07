@@ -131,7 +131,11 @@ class News
 
     function convert_new_line($string)
     {
-        return str_replace("\r\n", "<br>", $string);
+
+        $str = str_replace("\r\n", "<br>", $string);
+        $str = str_replace('rnrn', "", $string);
+
+        return $str;
     }
     function head_meta_desc($desc = "")
     {

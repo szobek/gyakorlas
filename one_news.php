@@ -53,7 +53,7 @@ $user_class = new User();
                 </div>
                 <div class="news-content-wrapper">
 <p class="news-lead"><strong><?php echo $n->convert_new_line($news->lead); ?></strong></p>
-                    <p><?php echo $news->content ?></p>
+                    <p><?php echo $n->convert_new_line($news->content);  ?></p>
                     <hr>
                     <p><small>Szerző: <a href="author-profile.php?id=<?php echo $news->author; ?>"> <?php 
                     $user = $user_class->getUserById($news->author);
