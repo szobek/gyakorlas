@@ -1,4 +1,4 @@
-# Redirect non-existing pages to index.php
+
 Options +SymLinksIfOwnerMatch 
 RewriteEngine On 
 RewriteCond %{REQUEST_FILENAME} !-f 
