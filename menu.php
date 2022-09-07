@@ -16,7 +16,7 @@
         <li class="nav-item">
           <a class="nav-link" href="/">Hírek</a>
         </li>
-
+        
         <?php
         if (!array_key_exists("logged", $_SESSION)) : ?>
           <li class="nav-item">

@@ -91,7 +91,7 @@ class Image
             data-src="' . $file . '"
             src="../image/' . $imageName[0] . '.' . $imageName[1] . '" 
             alt="'.$alt.'" 
-            title="An image " 
+            title="An image " >
            </picture>
            ';
         } else {

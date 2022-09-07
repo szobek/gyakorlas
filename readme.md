@@ -1,0 +1,1 @@
+https://www.milople.com/blogs/how-to-send-mail-from-localhost-xampp-using-gmail/

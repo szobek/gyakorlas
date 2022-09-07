@@ -48,7 +48,7 @@ class News
         $newn->id = uniqid();
         $newn->lead = $_REQUEST["lead"];
         $newn->title = $_REQUEST["title"];
-        $newn->content = $this->remove_string_end($_REQUEST["content"]);
+        $newn->content = $str = str_replace("\"", "'", $this->remove_string_end($_REQUEST["content"]));
         $newn->image_url = $uid . $_REQUEST["image_url"];
         $newn->image_alt = $_REQUEST["image_alt"];
         $newn->keywords = $_REQUEST["keywords"];
@@ -110,7 +110,7 @@ class News
         $index = $this->get_news_index($id);
         $this->all[$index]->title = $request["title"];
         $this->all[$index]->keywords = trim($request["keywords"]);
-        if($request["modify-image"] === "on"){
+        if ($request["modify-image"] === "on") {
 
             $this->all[$index]->image_url = $uid . $request["image_url"];
         }
@@ -153,8 +153,12 @@ class News
         } else {
             $text = $json_string;
         }
+        /* $str = str_replace("\"", "'", $text);
+        $str = str_replace("&#34;", "'", $text);
+        $str = str_replace('rnrn', "", $text); */
         file_put_contents("assets/jsons/news.json", "");
         file_put_contents("assets/jsons/news.json", $text);
+        $this->send_email_about_news();
     }
 
     function get_news_by_author($author)
@@ -177,6 +181,9 @@ param $a actual page num
         }
         //$news_num = count($this->sliced);
         $a = (int)$a;
+        if (!is_array($this->all)) {
+            $this->all = [];
+        }
         $this->sliced = $this->show_sliced_news();
         $allpage = count($this->all) / $this->perpage;
         /*  var_dump($allpage);
@@ -215,10 +222,10 @@ param $a actual page num
             $page = intval($page);
         }
         $from = ($page * $this->perpage) - $this->perpage;
-        if(is_array($this->all)){
+        if (is_array($this->all)) {
             $sliced = array_slice($this->all, $from, $this->perpage);
             $this->sliced = $sliced; //5öt kivág
-        }else{
+        } else {
 
             $sliced = [];
             $this->sliced = [];
@@ -268,5 +275,19 @@ param $a actual page num
         //die();
 
         return $arr;
+    }
+
+    function send_email_about_news()
+    {
+        $to = "kunszt.norbert2@gmail.com";
+        $subject = "Új  hír";
+        $txt = "Látogasd meg az oldalt";
+        $headers = "";
+
+        if (mail($to, $subject, $txt, $headers)) {
+            echo "Email successfully sent to $to...";
+        } else {
+            echo "Email sending failed!";
+        }
     }
 }
