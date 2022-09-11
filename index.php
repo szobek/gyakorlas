@@ -41,7 +41,7 @@ $p = (isset($_REQUEST["p"])) ? $_REQUEST["p"] : 1;
                             <?php echo mb_strimwidth($n->lead, 0, 60, "...")  ?>
                         </div>
                         <div class="card-body">
-                            <p class="card-text"><?php echo mb_strimwidth($n->content, 0, 60, "...")  ?></p>
+                            <p class="card-text"><?php echo mb_strimwidth($n->content, 0, 160, "...")  ?></p>
                         </div>
                         <div class="card-footer text-center">
 

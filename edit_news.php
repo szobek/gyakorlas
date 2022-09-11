@@ -87,6 +87,8 @@ $img_class = new Image();
                     </script>
                     <br>
 
+                    
+
                     <label for="keywords">Kulcsszavak(space-szel elválasztva)</label>
                     <div class="input-group mb-3">
                         <input autocomplete="off" type="text" id="keywords" name="keywords" value="<?php echo $k ?>" class="form-control" placeholder="Kulcsszavak">

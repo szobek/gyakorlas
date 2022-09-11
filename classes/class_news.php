@@ -40,7 +40,7 @@ class News
     }
 
 
-    function save_news_new($uid, $session)
+    function save_news_new(string $uid,  $session):void
     {
         $newn = new stdClass;
         $file = "assets/jsons/news.json";
@@ -48,17 +48,27 @@ class News
         $newn->id = uniqid();
         $newn->lead = $_REQUEST["lead"];
         $newn->title = $_REQUEST["title"];
-        $newn->content = $str = str_replace("\"", "'", $this->remove_string_end($_REQUEST["content"]));
+        $newn->content = $this->explode_and_convert_string($_REQUEST["content"]);
         $newn->image_url = $uid . $_REQUEST["image_url"];
         $newn->image_alt = $_REQUEST["image_alt"];
         $newn->keywords = $_REQUEST["keywords"];
         $newn->author = $session["user"]->id;
         array_push($text, $newn);
+       // var_dump($m);die();
 
 
         $b =  stripslashes(json_encode($text, JSON_UNESCAPED_UNICODE));
         $this->convert_and_put($b, false);
         header("Location:/");
+    }
+
+    function explode_and_convert_string(string $string):string{
+
+ $mirol = ['&quot;','"',"rnrn"];
+        $mire = ["'","'",""];
+        $string = str_replace($mirol,$mire, $string);
+//        var_dump($string);die(); 
+        return $string;
     }
 
     function set_empty_value(): stdClass
@@ -75,7 +85,7 @@ class News
         return $one;
     }
 
-    function delete_news($id)
+    function delete_news(string $id) :void
     {
         $i = -1;
         $arr = [];
@@ -92,7 +102,7 @@ class News
     }
 
 
-    function get_news_index($id)
+    function get_news_index(string $id) :string
     {
         $i = 0;
 
@@ -104,7 +114,7 @@ class News
         }
         return $i;
     }
-    function modify_news($id, $request, $uid, $session)
+    function modify_news(string $id, array $request, int $uid, array $session):void
     {
         $uid = ($request["id"] !== "-1") ? $uid : "";
         $index = $this->get_news_index($id);
@@ -115,50 +125,43 @@ class News
             $this->all[$index]->image_url = $uid . $request["image_url"];
         }
         $this->all[$index]->image_alt = $request["image_alt"];
-        $this->all[$index]->content = $this->remove_string_end($request["content"]);
+        $this->all[$index]->content = $this->explode_and_convert_string($_REQUEST["content"]);
         $this->all[$index]->lead = $request["lead"];
         $this->all[$index]->author = $session["user"]->id;
-        //var_dump($uid,$request["id"]);
-        //die();
+
         $this->convert_and_put($this->all);
         header("Location:/");
     }
 
-    function remove_string_end($string)
+    function remove_string_end(string $string):string
     {
         return substr($string, 0, -2);
     }
 
-    function convert_new_line($string)
+    function convert_new_line(string $string):string
     {
 
+        $str = str_replace("rn", "", $string);
         $str = str_replace("\r\n", "<br>", $string);
-        $str = str_replace('rnrn', "", $string);
 
         return $str;
     }
-    function head_meta_desc($desc = "")
+    function head_meta_desc(string $desc = ""):string
     {
         return '<meta name="description" content="' . mb_strimwidth($desc, 0, 160, "...") . '">';
     }
-    function head_meta_title($title = "")
+    function head_meta_title(string $title = ""):string
     {
         return '<meta name="title" content="' . $title . '">';
     }
 
-    function convert_and_put($json_string, $je = true)
+    function convert_and_put( $json_string, bool $je = true):void
     {
-        if ($je) {
-            $text = json_encode($json_string);
-        } else {
-            $text = $json_string;
-        }
-        /* $str = str_replace("\"", "'", $text);
-        $str = str_replace("&#34;", "'", $text);
-        $str = str_replace('rnrn', "", $text); */
+        $text= ($je)?json_encode($json_string): $text = $json_string;
+            
         file_put_contents("assets/jsons/news.json", "");
         file_put_contents("assets/jsons/news.json", $text);
-        $this->send_email_about_news();
+        //$this->send_email_about_news();
     }
 
     function get_news_by_author($author)
