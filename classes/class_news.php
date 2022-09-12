@@ -11,15 +11,15 @@ class News
 
         $file = "assets/jsons/news.json";
         $text = file_get_contents($file);
-        $this->all = json_decode($text);
+        $this->all =(!empty($text))? json_decode($text):[];
     }
 
-    function get_news()
+    function get_news():array
     {
         return $this->all;
     }
 
-    function get_news_by_id($id)
+    function get_news_by_id(string $id):stdClass
     {
         $one = new stdClass;
         if ($id === -1 || $id === "-1") {
@@ -58,7 +58,7 @@ class News
 
 
         $b =  stripslashes(json_encode($text, JSON_UNESCAPED_UNICODE));
-        $this->convert_and_put($b, false);
+        $this->convert_and_put($b, false,$newn);
         header("Location:/");
     }
 
@@ -155,16 +155,19 @@ class News
         return '<meta name="title" content="' . $title . '">';
     }
 
-    function convert_and_put( $json_string, bool $je = true):void
+    function convert_and_put( $json_string, bool $je = true,$newn = null):void
     {
         $text= ($je)?json_encode($json_string): $text = $json_string;
             
         file_put_contents("assets/jsons/news.json", "");
         file_put_contents("assets/jsons/news.json", $text);
-        //$this->send_email_about_news();
+        if(property_exists($newn,"id")){
+
+            $this->send_email_about_news($newn);
+        }
     }
 
-    function get_news_by_author($author)
+    function get_news_by_author(string $author):array
     {
         $arr = [];
         foreach ($this->all as $item) {
@@ -177,7 +180,7 @@ class News
     /*
 param $a actual page num
 */
-    function show_pagination(string $a)
+    function show_pagination(string $a):void
     {
         if (intval($a) < 1) {
             die("Hibás oldalszám");
@@ -215,7 +218,7 @@ param $a actual page num
             echo $next . '</ul>';
         }
     }
-    function show_sliced_news($page = 0)
+    function show_sliced_news(int $page = 0):array
     {
         $from = [];
 
@@ -238,7 +241,7 @@ param $a actual page num
         return $sliced;
     }
 
-    function check_page($page)
+    function check_page(string $page):bool
     {
         $valid = false;
 
@@ -250,7 +253,7 @@ param $a actual page num
         return $valid;
     }
 
-    function explode_keywords_to_strings($kw)
+    function explode_keywords_to_strings(string $kw):array
     {
         $keys = [];
         if (strpos($kw, ' ') !== false) {
@@ -262,7 +265,7 @@ param $a actual page num
         return $keys;
     }
 
-    function get_news_by_kw($keyword): array
+    function get_news_by_kw(string $keyword): array
     {
         $arr = [];
 
@@ -280,11 +283,11 @@ param $a actual page num
         return $arr;
     }
 
-    function send_email_about_news()
+    function send_email_about_news(stdClass $newn) :void
     {
         $to = "kunszt.norbert2@gmail.com";
         $subject = "Új  hír";
-        $txt = "Látogasd meg az oldalt";
+        $txt = "Látogasd meg az oldalt\r\nLink:<a href='http://mgy.gg/one_news.php?id=".$newn->id."' target='_blank'>Link</a>";
         $headers = "";
 
         if (mail($to, $subject, $txt, $headers)) {
