@@ -1,9 +1,3 @@
-<?php
-//var_dump($_SESSION);
-
-?>
-
-
 <nav id="main-mav" class="navbar navbar-expand-lg">
   <div class="container-fluid">
     <a class="navbar-brand" href="/">Hírek Portál</a>

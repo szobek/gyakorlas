@@ -7,7 +7,12 @@ $id = $_REQUEST["id"];
 $news_class = new News();
 $image_class = new Image();
 $user_class = new User();
-$id=$_REQUEST["id"];
+if(!isset($_REQUEST["id"])){
+    die("Hibás id");
+}else{
+
+    $id=$_REQUEST["id"];
+}
 ?>
 
 <!DOCTYPE html>
