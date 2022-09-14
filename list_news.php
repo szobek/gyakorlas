@@ -25,7 +25,7 @@ include_once "check_logged.php";
       <div class="col">
         <ul class="list-group ">
           <?php
-    $news = $n->get_news();
+    $news = $n->all;
     foreach ($news as $n) :
       ?>
   <li class="list-group-item"><a href="<?php echo "one_news.php?id=" . $n->id ?>"><?php echo $n->title?></a> <div class="button-container">
