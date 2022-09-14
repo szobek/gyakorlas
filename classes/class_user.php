@@ -1,117 +1,152 @@
 <?php
 
+require_once "classes/class_news.php";
+
 class User
 {
-    public $allUser = [];
+    public $allUser;
+    public $author;
+    public $user;
     public $file = "assets/jsons/users.json";
+
+
     function __construct()
     {
+        $this->allUser = [];
+
         $text = file_get_contents($this->file);
-        $this->allUser = json_decode($text);
+        $regex='/^[[]\W+id\W+\w+\W+firstName\W+\w+\W+lastName\W+\w+\W+password.+\W+email\W+.+\W+]$/';
+        $result_preg_match = preg_match($regex, $text);
+        //var_dump($result_preg_match);die();
+        if ($result_preg_match) {
+            $this->allUser = json_decode($text);
+        } else {
+            $this->allUser = [];
+        }
+         
         
+        
+        if ($_SERVER["PHP_SELF"] === "/author-profile.php") {
+            $this->getUserById($_REQUEST["id"]);
+        }
+        if ($_SERVER["PHP_SELF"] === "/one_news.php") {
+            $this->getUserByNewsId($_REQUEST["id"]);
+        }
     }
-    function login()
+    public function login()
     {
+        $user_logged = [];
         foreach ($this->allUser as $user) {
             if ($_REQUEST["email"] === $user->email) {
+                $psw = $user->password;
+                $verify_psw=password_verify($_REQUEST["password"], $psw);
+                //var_dump($verify_psw);die();
                 
-                if(password_verify($_REQUEST["password"],$user->password)){
-                    $user = ["logged"=>true,"id"=>$user->id,"user"=>$user];
-                    return $user;
+                if ($verify_psw) {
+                    $user_logged = ["logged" => true, "id" => $user->id, "user" => $user];
+                    return $user_logged;
                 }
             }
         }
-        return $user = ["logged"=>false];
-        return $user;;
+        return ["logged" => false];
     }
-    function getUserById($id)
+    protected function getUserByNewsId(string $id): void
     {
-        $logged = new stdClass;
-        $logged->firstName = "";
-        $logged->lastName = "";
-        
-        foreach ($this->allUser as $user) {
-            if ($id === $user->id) {
-$logged=$user;
+        $news_class = new News();
+        $news = $news_class->get_news_by_id($id);
+
+        foreach ($this->allUser as  $user) {
+            if ($news->author === $user->id) {
+                $this->author = $user;
+                break;
             }
         }
-        
-        return $logged;
+    }
+    protected function getUserById(string $id):void
+    {
+        foreach ($this->allUser as  $user) {
+            if ($id === $user->id) {
+                $this->user = $user;
+                break;
+            }
+        }
     }
 
-    function setLoggedAndAddData($session,$fn)
+    public function setLoggedAndAddData(array $session, array $fn): array
     {
         $user = $fn["user"];
-$session["logged"] = true;
-$session["user"] = $user;
+        $session["logged"] = true;
+        $session["user"] = $user;
 
-return $session;
+        return $session;
     }
 
-    
-    function getAllUser()
+    public function registration(array $request): bool
     {
-        return $this->allUser;
-    }
+        try {
+            $emptyArray = [];
 
-
-    function registration($request)
-    {
-        $emptyArray = [];
-        
-        $newUser = new stdClass;
-        $newUser->id = uniqid();
-        $newUser->firstName = $request["firstName"];
-        $newUser->lastName = $request["lastName"];
-        $newUser->password = $this->hash_password($request["password"]);
-        $newUser->email = $request["email"];
-        $allUser = $this->getAllUser();
-        //var_dump($allUser);
-        //die();
-        $newArray = array_merge($emptyArray, $allUser);
-        array_push($newArray, $newUser);
-        $text=json_encode($newArray, JSON_UNESCAPED_UNICODE);
-        file_put_contents("assets/jsons/users.json", "");
-        file_put_contents("assets/jsons/users.json",$text );
-        return true;
-    }
-
-
-    function hash_password($password){
-    return password_hash($password, PASSWORD_ARGON2I);
-
-    }
-
-
-
-    function modify_logged_user($session, $request){
-        $arr = [];
-        $response = false;
-        foreach ($this->allUser as $user) {
-            if ($session["user"]->id === $user->id) {
-                $session["user"]->firstName = $request["firstName"];
-                $session["user"]->lastName = $request["lastName"];
-                $user->firstName = $request["firstName"];
-                $user->lastName = $request["lastName"];
-                if($request["passwordNew"]===$request["passwordNew2"]){
-                    $user->password = $this->hash_password($request["passwordNew2"]);
-                } else{
-                    die("Eltérő jelszavak");
-                }
-                array_push($arr, $user);
-
-            }else{
-
-                array_push($arr, $user);
-            }
+            $newUser = new stdClass;
+            $newUser->id = uniqid();
+            $newUser->firstName = $this->secure_string($request["firstName"]);
+            $newUser->lastName = $this->secure_string($request["lastName"]);
+            $newUser->password = $this->hash_password($request["password"]);
+            $newUser->email = $this->secure_string($request["email"]);
+            $allUser = $this->allUser;
+            $newArray = array_merge($emptyArray, $allUser);
+            array_push($newArray, $newUser);
+            $text = json_encode($newArray, JSON_UNESCAPED_UNICODE);
+            file_put_contents("assets/jsons/users.json", "");
+            file_put_contents("assets/jsons/users.json", $text);
+            return true;
+        } catch (\Throwable $th) {
+            return false;
         }
-        $text = json_encode($arr, JSON_UNESCAPED_UNICODE);
-        file_put_contents("assets/jsons/users.json", "");
-        file_put_contents("assets/jsons/users.json",$text );
-        $response = true;
-        return $response;
     }
 
+
+    protected function hash_password(string $password): string
+    {
+        return password_hash($password, PASSWORD_ARGON2I);
+    }
+
+
+
+    public function modify_logged_user(array $session, array $request): bool
+    {
+
+        try {
+            $arr = [];
+            foreach ($this->allUser as $user) {
+                if ($session["user"]->id === $user->id) {
+                    $session["user"]->firstName = $user->firstName = $this->secure_string($request["firstName"]);
+                    $session["user"]->lastName = $user->lastName = $this->secure_string($request["lastName"]);
+                    if ($request["passwordNew"] === $request["passwordNew2"]) {
+                        $user->password = $this->hash_password($request["passwordNew2"]);
+                    } else {
+                        die("Eltérő jelszavak");
+                    }
+                    array_push($arr, $user);
+                } else {
+
+                    array_push($arr, $user);
+                }
+            }
+            $text = json_encode($arr, JSON_UNESCAPED_UNICODE);
+            file_put_contents("assets/jsons/users.json", "");
+            file_put_contents("assets/jsons/users.json", $text);
+            return true;
+        } catch (\Throwable $th) {
+            return false;
+        }
+    }
+    public function logout(): void
+    {
+        session_destroy();
+        header("Location:/");
+    }
+    protected function secure_string(string $string): string
+    {
+        return htmlspecialchars(strip_tags($string), ENT_QUOTES, 'UTF-8');;
+    }
 }
-
-
