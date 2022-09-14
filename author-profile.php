@@ -31,7 +31,7 @@ if(!isset($_REQUEST["id"])){
             <div class="col  author-container">
                 <div class="author-data">
                 <p>Név: <?php 
-                    $user = $user_class->getUserById($id);
+                    $user = $user_class->user;
                     
                     if(empty($user)){
                         echo "Nem találtam ilyen szerzőt!";

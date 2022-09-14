@@ -1,4 +1,5 @@
 <?php
-session_start();
-session_destroy();
-header("Location:/");
+include_once "load.php";
+include_once "classes/class_user.php";
+$user_class = new User();
+$user_class->logout();

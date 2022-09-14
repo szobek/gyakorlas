@@ -1,5 +1,5 @@
 <?php 
-session_start();
+require_once "load.php";
 include_once "check_logged.php";
 include_once "classes/class_image.php";
 

@@ -64,8 +64,8 @@ class News
 
     function explode_and_convert_string(string $string):string{
 
- $mirol = ['&quot;','"',"rnrn"];
-        $mire = ["'","'",""];
+ $mirol = ['&quot;','"',"rnrn","rn"];
+        $mire = ["'","'","",""];
         $string = str_replace($mirol,$mire, $string);
 //        var_dump($string);die(); 
         return $string;
