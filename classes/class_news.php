@@ -173,43 +173,50 @@ class News
     /*
 param $a actual page num
 */
-    public function show_pagination(string $a): void
+    public function show_pagination(string $pagenum = "1"): void
     {
-        if (intval($a) < 1) {
+        /* var_dump($pagenum);
+        die();
+  */
+        if (intval($pagenum) < 1) {
             die("Hibás oldalszám");
         }
         //$news_num = count($this->sliced);
-        $a = (int)$a;
+        $pagenum = (int)$pagenum;
         if (!is_array($this->all)) {
             $this->all = [];
         }
         $this->sliced = $this->show_sliced_news();
         $allpage = count($this->all) / $this->perpage;
-        /*  var_dump($allpage);
-        die(); */
-        $prev = ($a <= 1) ? '' : '<li class="page-item"><a class="page-link" href="?p=' . ($a - 1) . '">Előző</a></li>';
-        $next = ($allpage > $a) ? '<li class="page-item"><a class="page-link" href="?p=' . ($a + 1) . '">Következő</a></li>' : '';
-        echo '<ul class="pagination">' . $prev;
-
-        /*          var_dump($a===1);
-        die();
- */
-
-        if ($a > 5) {
-
-            echo ($a > 1) ? '<li class="page-item "><a class="page-link" href="?p=1">Első</a></li>' : '';
-            echo ($a - 2 > 1) ? '<li class="page-item ">...</li>' : '';
-            echo ($a - 2 >= 1) ? '<li class="page-item "><a class="page-link" href="?p=' . ($a - 2) . '">' . ($a - 2) . '</a></li>' : '';
-            echo ($a - 1 >= 1) ? '<li class="page-item "><a class="page-link" href="?p=' . ($a - 1) . '">' . ($a - 1) . '</a></li>' : '';
-            echo '<li class="page-item active"><a class="page-link" href="?p=' . ($a) . '">' . ($a) . '</a></li>';
-            echo ($a < round($allpage) + 1) ? '<li class="page-item "><a class="page-link" href="?p=' . ($a + 1) . '">' . ($a + 1) . '</a></li>' : '';
-            echo ($a < round($allpage) + 1) ? '<li class="page-item "><a class="page-link" href="?p=' . ($a + 2) . '">' . ($a + 2) . '</a></li>' : '';
-            echo ($a + 2 < round($allpage) + 1) ? '<li class="page-item ">...</li>' : '';
-            echo ($a < (round($allpage) + 1)) ? '<li class="page-item "><a class="page-link" href="?p=' . (round($allpage) + 1) . '">Utolsó</a></li>' : '';
+        $last = ($allpage<16.5)?round($allpage):round($allpage)+1;
+        if($pagenum>$last){
+            die("Hibás oldal");
+        }
+        $prev = ($pagenum <= 1) ? '' : '<li class="page-item"><a class="page-link" href="?page=' . ($pagenum - 1) . '">Előző</a></li>';
+        $next = ($allpage > $pagenum) ? '<li class="page-item"><a class="page-link" href="?page=' . ($pagenum + 1) . '">Következő</a></li>' : '';
+        echo '<ul class="pagination lll">' . $prev;
+        
+        
+        if($this->all>9){
+            echo ($pagenum > 1) ? '<li class="page-item "><a class="page-link" href="?page=1">Első</a></li>' : '';
+            echo ($pagenum - 2 > 1) ? '<li class="page-item "><sub>...</sub></li>' : '';
+            echo ($pagenum - 2 >= 1) ? '<li class="page-item "><a class="page-link" href="?page=' . ($pagenum - 2) . '">' . ($pagenum - 2) . '</a></li>' : '';
+            echo ($pagenum - 1 >= 1) ? '<li class="page-item "><a class="page-link" href="?page=' . ($pagenum - 1) . '">' . ($pagenum - 1) . '</a></li>' : '';
+            echo '<li class="page-item active"><a class="page-link" href="?page=' . ($pagenum) . '">' . ($pagenum) . '</a></li>';
+            echo ($pagenum < $allpage ) ? '<li class="page-item "><a class="page-link" href="?page=' . ($pagenum + 1) . '">' . ($pagenum + 1) . '</a></li>' : '';
+            //var_dump($last,$last);die();
+            echo ($pagenum+2 < round($allpage, 0, PHP_ROUND_HALF_UP)+1 ) ? '<li class="page-item "><a class="page-link" href="?page=' . ($pagenum + 2) . '">' . ($pagenum + 2) . '</a></li>' : '';
+            //var_dump($pagenum+2,round($allpage, 0, PHP_ROUND_HALF_UP));die();
+            
+     
+            echo ($pagenum + 3 < round($allpage, 0, PHP_ROUND_HALF_UP)+1 ) ? '<li class="page-item "><sub>...</sub></li>' : '';
+            echo ($pagenum < $last) ? '<li class="page-item "><a class="page-link" href="?page=' . $last  . '">Utolsó</a></li>' : '';
 
 
             echo $next . '</ul>';
         }
+
+        
     }
     function show_sliced_news(int $page = 0): array
     {

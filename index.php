@@ -5,7 +5,9 @@ include_once "classes/class_news.php";
 include_once "classes/class_image.php";
 $news_class = new  News();
 $image = new Image();
-$p = (isset($_REQUEST["p"])) ? $_REQUEST["p"] : 1;
+$page = (isset($_REQUEST["page"])) ? $_REQUEST["page"] : 1;
+/* var_dump($page);
+die(); */
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,7 +34,7 @@ $p = (isset($_REQUEST["p"])) ? $_REQUEST["p"] : 1;
         <div class="row">
             <div class="col d-flex justify-content-center news-container p-3">
                 <?php
-                $news = $news_class->show_sliced_news($p);
+                $news = $news_class->show_sliced_news($page);
                 foreach ($news as $n) :
                 ?>
                     <div class="card">
@@ -58,9 +60,9 @@ $p = (isset($_REQUEST["p"])) ? $_REQUEST["p"] : 1;
     </div>
     <div class="container">
         <div class="row">
-            <div class="col mt-4 ">
+            <div class="col mt-4 paginator">
                 <?php
-                $news_class->show_pagination($p);
+                $news_class->show_pagination($page);
                 ?>
                 <div class="up">
                 <i class="fa fa-arrow-up" aria-hidden="true"></i>

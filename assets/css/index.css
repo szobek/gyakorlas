@@ -135,6 +135,11 @@
   color: darkorange;
 }
 
+.paginator sub {
+  bottom: -1rem;
+  margin: auto 0.8rem;
+}
+
 body {
   margin: 0;
   padding: 0;

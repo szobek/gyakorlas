@@ -169,7 +169,10 @@ $news-card-bg: aliceblue;
     color: darkorange;
 }
 
-
+.paginator sub {
+    bottom: -1rem;
+    margin: auto 0.8rem;
+}
 
 
 
