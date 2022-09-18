@@ -15,10 +15,7 @@ class User
         $this->allUser = [];
 
         $text = file_get_contents($this->file);
-        $first_character = substr($text,0,1);
-        $last_character = substr($text,-1);
-        //var_dump($first_character,$last_character);die();
-        if ($first_character === "[" && $last_character === "]") {
+        if ($this->validateJson($text)) {
             $this->allUser = json_decode($text);
         } else {
             die("Hibás user.json");
@@ -31,6 +28,15 @@ class User
         }
         if ($_SERVER["PHP_SELF"] === "/one_news.php") {
             $this->getUserByNewsId($_REQUEST["id"]);
+        }
+    }
+    private function validateJson(string $jsonText):bool
+    {
+        try {
+            $test = json_decode($jsonText, null, JSON_THROW_ON_ERROR);
+            return true;
+        } catch (Exception $e) {
+            return false;
         }
     }
     public function login()
