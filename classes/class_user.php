@@ -15,13 +15,13 @@ class User
         $this->allUser = [];
 
         $text = file_get_contents($this->file);
-        $regex='/^[[]\W+id\W+\w+\W+firstName\W+\w+\W+lastName\W+\w+\W+password.+\W+email\W+.+\W+]$/';
-        $result_preg_match = preg_match($regex, $text);
-        //var_dump($result_preg_match);die();
-        if ($result_preg_match) {
+        $first_character = substr($text,0,1);
+        $last_character = substr($text,-1);
+        //var_dump($first_character,$last_character);die();
+        if ($first_character === "[" && $last_character === "]") {
             $this->allUser = json_decode($text);
         } else {
-            $this->allUser = [];
+            die("Hibás user.json");
         }
          
         
