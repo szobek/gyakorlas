@@ -1,5 +1,5 @@
 <?php 
-
+session_start();
 include_once "check_logged.php";
 $image = new Image();
 $newImg=$image->upload_image("upload");

@@ -1,6 +1,6 @@
 <?php
-include_once "check_logged.php";
 include_once "load.php";
+include_once "check_logged.php";
 $img_class = new Image();
 
 ?>

@@ -10,8 +10,7 @@ if(isset($_REQUEST["id"])){
 }
 $n = new News();
 $news = $n->get_news_by_id($id);
-//var_dump($news);
-//die();
+
 
 if(!isset($news->content)){
     echo "Nem találtam ilyen hírt!";

@@ -1,7 +1,6 @@
 <?php
 require_once "load.php";
 include_once "check_logged.php";
-include_once "load.php";
 $n = new  News();
 if(isset($_REQUEST["id"])){
     $id = $_REQUEST["id"];
