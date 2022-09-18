@@ -1,7 +1,6 @@
 <?php
 
  include_once "load.php";
- include_once "classes/class_user.php";
  //var_dump($_REQUEST);die();
 if(!empty($_REQUEST["email"]) && !empty($_REQUEST["password"]) ){
     $user_class = new User();

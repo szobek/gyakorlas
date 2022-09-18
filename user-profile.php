@@ -1,5 +1,6 @@
 <?php
-session_start();
+include_once "load.php";
+
 $alert=false;
 if (!isset($_SESSION["user"])) {
     die("Nincs ilyen user");

@@ -1,5 +1,5 @@
 <?php
-include_once "classes/class_user.php";
+include_once "load.php";
 $alert = false;
 if (!empty($_REQUEST["email"]) && !empty($_REQUEST["password"])) {
   $user_class = new User();

@@ -1,5 +1,7 @@
 <?php
 session_start();
-/* include_once "classes/class_error.php";
-$error_class = new MyError();
-set_error_handler($error_class->errorWrite); */
+
+spl_autoload_register(function ($class_name) {
+    include "classes/class_".$class_name . '.php';
+});
+

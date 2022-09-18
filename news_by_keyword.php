@@ -1,8 +1,5 @@
 <?php
-session_start();
-include_once "classes/class_news.php";
-include_once "classes/class_image.php";
-include_once "classes/class_user.php";
+include_once "load.php";
 
 if(isset($_REQUEST["kw"])){
     $kw = $_REQUEST["kw"];

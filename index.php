@@ -1,8 +1,7 @@
 <?php
 
 include_once "load.php";
-include_once "classes/class_news.php";
-include_once "classes/class_image.php";
+
 $news_class = new  News();
 $image = new Image();
 $page = (isset($_REQUEST["page"])) ? $_REQUEST["page"] : 1;

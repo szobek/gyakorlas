@@ -12,6 +12,7 @@ class News
         $file = "assets/jsons/news.json";
         $text = file_get_contents($file);
         $this->all = (!empty($text)) ? json_decode($text) : [];
+ //       var_dump($text);die();
         $this->perpage = 10;
     }
 
@@ -87,6 +88,7 @@ class News
     {
         $i = -1;
         $arr = [];
+        //var_dump($id);die();
         foreach ($this->all as $item) {
             $i++;
             if ($item->id === $id) {
@@ -95,6 +97,7 @@ class News
                 array_push($arr, $item);
             }
         }
+        
         $this->convert_and_put($arr);
         header("Location:/");
     }
@@ -152,6 +155,7 @@ class News
     {
         $text = ($je) ? json_encode($json_string) : $text = $json_string;
 
+        $text = str_replace("rn","",$text);
         file_put_contents("assets/jsons/news.json", "");
         file_put_contents("assets/jsons/news.json", $text);
         if (property_exists($newn, "id")) {
@@ -175,9 +179,7 @@ param $a actual page num
 */
     public function show_pagination(string $pagenum = "1"): void
     {
-        /* var_dump($pagenum);
-        die();
-  */
+        
         if (intval($pagenum) < 1) {
             die("Hibás oldalszám");
         }
@@ -188,8 +190,14 @@ param $a actual page num
         }
         $this->sliced = $this->show_sliced_news();
         $allpage = count($this->all) / $this->perpage;
-        $last = ($allpage<16.5)?round($allpage):round($allpage)+1;
-        if($pagenum>$last){
+        $mod=("")?"":1;
+        $last = round($allpage, 0,PHP_ROUND_HALF_DOWN);
+        //var_dump($last);die();
+        if($allpage<2){
+            echo "";
+            return;
+        }
+        if($pagenum>$last ){
             die("Hibás oldal");
         }
         $prev = ($pagenum <= 1) ? '' : '<li class="page-item"><a class="page-link" href="?page=' . ($pagenum - 1) . '">Előző</a></li>';
@@ -220,24 +228,24 @@ param $a actual page num
     }
     function show_sliced_news(int $page = 0): array
     {
-        $from = [];
+        $from = 0;
 
         if (!$this->check_page($page)) {
-            die("Hibás oldal");
+            die("Hibás oldal nc 231");
         } else {
             $page = intval($page);
         }
-        $from = ($page * $this->perpage) - $this->perpage;
+//        var_dump(count($this->all),$this->perpage);die();
+        $from =(count($this->all)<$this->perpage)? 0 : ($page * $this->perpage) - $this->perpage;
         if (is_array($this->all)) {
             $sliced = array_slice($this->all, $from, $this->perpage);
-            $this->sliced = $sliced; //5öt kivág
+            $this->sliced = $sliced; 
         } else {
 
             $sliced = [];
             $this->sliced = [];
         }
-        /*        var_dump($sliced);
-        die(); */
+        //var_dump($this->sliced);die();
         return $this->sliced;
     }
 
@@ -295,5 +303,8 @@ param $a actual page num
     protected function secure_string(string $string): string
     {
         return htmlspecialchars(strip_tags($string), ENT_QUOTES, 'UTF-8');;
+    }
+    function fn():void{
+        echo "Hello";
     }
 }

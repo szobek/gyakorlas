@@ -1,7 +1,7 @@
 <?php
 require_once "load.php";
 include_once "check_logged.php";
-    include_once "classes/class_news.php";
+    
     $n = new  News();
     ?>
 

@@ -1,9 +1,7 @@
 <?php 
-require_once "load.php";
 include_once "check_logged.php";
-include_once "classes/class_image.php";
+require_once "load.php";
 
-include_once "classes/class_news.php";
     $n = new News();
 if($_REQUEST["title"]===""||$_REQUEST["keywords"]===""||$_REQUEST["image_alt"]===""||$_REQUEST["image_url"]===""||$_REQUEST["content"]===""){
     echo "Üres Mező";
