@@ -2,8 +2,8 @@
 
 include_once "load.php";
 
-$news_class = new  News();
-$image = new Image();
+$news_class = new  News;
+$image = new Image;
 $page = (isset($_REQUEST["page"])) ? $_REQUEST["page"] : 1;
 /* var_dump($page);
 die(); */

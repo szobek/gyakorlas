@@ -1,7 +1,10 @@
 <?php
 session_start();
 
-spl_autoload_register(function ($class_name) {
-    require_once "classes/class_".$class_name . '.php';
+spl_autoload_register(function ($className) {
+    $file = "classes/class_".$className . '.php';
+	if (file_exists($file)) {
+		require_once $file;
+	}
 });
 
