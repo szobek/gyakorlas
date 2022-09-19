@@ -80,8 +80,8 @@ class Image
                 return;
             }
             echo '<picture >
-            <source type="../image/webp" srcset="image/webp/' . $imageName[0] . '.webp">
-            <source type="../image/jpeg" srcset="image/' . $imageName[0] . '.' . $imageName[1] . '">
+            <source type="image/webp" srcset="image/webp/' . $imageName[0] . '.webp">
+            <source type="image/jpeg" srcset="image/' . $imageName[0] . '.' . $imageName[1] . '">
             <img 
             data-url="../image/' . $imageName[0] . '.' . $imageName[1] . '"
             data-name="' . $imageName[0] . '.' . $imageName[1] . '"
