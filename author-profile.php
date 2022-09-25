@@ -57,7 +57,7 @@ if(!isset($_REQUEST["id"])){
                         </div>
                         <div class="card-footer text-center">
 
-                            <a class="btn my-btn " href="<?php echo "one_news.php?id=" . $n->id ?>">Tovább</a>
+                            <a class="btn my-btn " href="<?php echo "one?id=" . $n->id ?>">Tovább</a>
                         </div>
                     </div>
                 <?php

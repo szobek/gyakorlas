@@ -28,14 +28,14 @@ include_once "check_logged.php";
     $news = $n->all;
     foreach ($news as $n) :
       ?>
-  <li class="list-group-item"><a href="<?php echo "one_news.php?id=" . $n->id ?>"><?php echo $n->title?></a> <div class="button-container">
+  <li class="list-group-item"><a href="<?php echo "one?id=" . $n->id ?>"><?php echo $n->title?></a> <div class="button-container">
     <a class="btn btn-danger"href="delete_news.php?id=<?php echo $n->id?>"><i class="fa fa-window-close"></i></a>
-    <a class="btn btn-success" href="edit_news.php?id=<?php echo $n->id?>"><i class="fa fa-pencil"></i></a>
+    <a class="btn btn-success" href="edit?id=<?php echo $n->id?>"><i class="fa fa-pencil"></i></a>
   </div></li>
   <?php
     endforeach;
     ?>
-    <li class="list-group-item"><a href="edit_news.php?id=-1">Új</a></li>
+    <li class="list-group-item"><a href="new?id=-1">Új</a></li>
   </ul>
   
 </div>

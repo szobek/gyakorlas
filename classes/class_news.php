@@ -17,14 +17,16 @@ class News
     }
 
 
-    public function get_news_by_id(string $id): stdClass
+    public function 
+    get_news_by_id(string $id): stdClass
     {
         $one = new stdClass;
         if ($id === -1 || $id === "-1") {
             $one =  $this->set_empty_value();
         }
         foreach ($this->all as $n) {
-            if ($n->id == $id) {
+            //var_dump($n);die();
+            if ($n->id === $id) {
                 $one = $n;
             }
         }
@@ -33,7 +35,6 @@ class News
 
             $one->k = $this->explode_keywords_to_strings($one->keywords);
         }
-
         return $one;
     }
 
@@ -115,9 +116,10 @@ class News
         }
         return $i;
     }
-    public function modify_news(string $id, array $request, int $uid, array $session): void
+    public function modify_news(string $id, array $request, string $uid, array $session): void
     {
         $uid = ($request["id"] !== "-1") ? $uid : "";
+        //var_dump($uid);die();
         $index = $this->get_news_index($id);
         $this->all[$index]->title = $this->secure_string($request["title"]) ;
         $this->all[$index]->keywords = trim($request["keywords"]);
@@ -190,7 +192,6 @@ param $a actual page num
         }
         $this->sliced = $this->show_sliced_news();
         $allpage = count($this->all) / $this->perpage;
-        $mod=("")?"":1;
         $last = round($allpage, 0,PHP_ROUND_HALF_DOWN);
         //var_dump($last);die();
         if($allpage<2){

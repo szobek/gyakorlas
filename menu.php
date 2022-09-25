@@ -14,7 +14,7 @@
         <?php
         if (!array_key_exists("logged", $_SESSION)) : ?>
           <li class="nav-item">
-            <a class="nav-link" href="login.php">login</a>
+            <a class="nav-link" href="login">login</a>
           </li>
         <?php endif ?>
         <?php if (array_key_exists("user", $_SESSION)) :
@@ -27,9 +27,9 @@
                 <span class="caret"></span>
               </button>
               <ul class="dropdown-menu">
-                <li><a href="user-profile.php">Profil</a></li>
-                <li><a href="list_news.php">Lista</a></li>
-                <li><a href="logout.php">Logout</a></li>
+                <li><a href="me">Profil</a></li>
+                <li><a href="list">Lista</a></li>
+                <li><a href="logout">Logout</a></li>
               </ul>
             </div>
           <?php endif ?>

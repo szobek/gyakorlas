@@ -52,8 +52,10 @@ $user_class = new User();
                     <p class="news-lead"><strong><?php echo $n->convert_new_line($news->lead); ?></strong></p>
                     <p><?php echo $n->convert_new_line($news->content);  ?></p>
                     <hr>
-                    <p><small>Szerző: <a href="author-profile.php?id=<?php echo $news->author; ?>"> <?php 
+                    <p><small>Szerző: <a href="author?id=<?php echo $news->author; ?>"> <?php 
                     $usera = $user_class->author;
+                    //var_dump($user_class);die();
+
                     if(property_exists($usera,"firstName") && 
                     property_exists($usera,"lastName")){
 
@@ -63,7 +65,7 @@ $user_class = new User();
                     <hr>
                     <div>Kulcszavak: <?php 
                      foreach($news->k as $keyword){
-                        echo '<div class="kw"><a href="news_by_keyword.php?kw='.$keyword.'">'.$keyword . " </a></div>";
+                        echo '<div class="kw"><a href="news_by_keyword?kw='.$keyword.'">'.$keyword . " </a></div>";
                      }
                      ?></div>
                 </div>

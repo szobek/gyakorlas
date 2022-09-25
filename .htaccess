@@ -1,8 +1,11 @@
 
 Options +SymLinksIfOwnerMatch 
 RewriteEngine On 
+RewriteBase /
 RewriteCond %{REQUEST_FILENAME} !-f 
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule . /404.php [L]
 
 ErrorDocument 404 /404.php
+RewriteCond %{REQUEST_URI} !.(css|gif|ico|jpg|jpeg|webp|js|png|swf|txt)$
+RewriteRule ^(.+)$ index.php [QSA,L]

@@ -23,11 +23,14 @@ class User
          
         
         
-        if ($_SERVER["PHP_SELF"] === "/author-profile.php") {
+        $request = explode("?",$_SERVER['REQUEST_URI'])[0];
+        if ($request === "/author") {
             $this->getUserById($_REQUEST["id"]);
+            
         }
-        if ($_SERVER["PHP_SELF"] === "/one_news.php") {
+        if($request==="/one"){
             $this->getUserByNewsId($_REQUEST["id"]);
+
         }
     }
     private function validateJson(string $jsonText):bool
@@ -60,7 +63,7 @@ class User
     {
         $news_class = new News();
         $news = $news_class->get_news_by_id($id);
-
+        //var_dump($id);die();
         foreach ($this->allUser as  $user) {
             if ($news->author === $user->id) {
                 $this->author = $user;
@@ -70,6 +73,7 @@ class User
     }
     protected function getUserById(string $id):void
     {
+        
         foreach ($this->allUser as  $user) {
             if ($id === $user->id) {
                 $this->user = $user;

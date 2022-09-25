@@ -23,6 +23,7 @@ $user_class = new User();
     <?php include_once "header.php";?>
 </head>
 <body>
+<?php include_once "menu.php"; ?>
     <div class="container">
         <div class="row">
             <div class="col text-center">

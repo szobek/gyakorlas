@@ -31,6 +31,7 @@ class Image
             }
         }
         $ret = ["uid" => $uid, "filename" => $convertedName . "." . $imageFileType];
+        //var_dump($ret);die();
         return $ret;
     }
 
@@ -89,7 +90,7 @@ class Image
             data-pathoriginal="../image/"
             class="photo-item" 
             data-src="' . $file . '"
-            src="../image/' . $imageName[0] . '.' . $imageName[1] . '" 
+            src="./image/' . $imageName[0] . '.' . $imageName[1] . '" 
             alt="'.$alt.'" 
             title="An image " >
            </picture>

@@ -1,6 +1,5 @@
 <?php 
-session_start();
-include_once "check_logged.php";
+require_once "load.php";
 $image = new Image();
 $newImg=$image->upload_image("upload");
 $fileNameToStore = $newImg["filename"];

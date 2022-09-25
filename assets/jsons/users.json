@@ -1,1 +1,9 @@
-[{"id":"63107234b9cb6","firstName":"Kunszt","lastName":"Norbert","password":"$argon2i$v=19$m=65536,t=4,p=1$eHk3dURxd0k4MUkvRzloYQ$rVDl6hfAAZxUr9KPcn3z\/Te8UB97CBhRSguHDMvKh3s","email":"kunszt.norbert@gmail.com"},{"id":"63107234b9cb6","firstName":"Kunszt","lastName":"Norbert","password":"$argon2i$v=19$m=65536,t=4,p=1$cGNramZrc1VEVDRaanEwLw$M1PYQVtepxd6FUIWw6kzuxOPuEd8C6Vq57DG7qwB7sw","email":"kunszt.norbert@gmail.com"},{"id":"63107234b9cb6","firstName":"Kunszt","lastName":"Norbert","password":"$argon2i$v=19$m=65536,t=4,p=1$bUl2S0dIcFVENDZCZWQyVA$UvWiGO9AOOIbxGAxUMn1meH8VzhWuppt5J188Huvegk","email":"kunszt.norbert@gmail.com"},{"id":"63107234b9cb6","firstName":"Kunszt","lastName":"Norbert","password":"$argon2i$v=19$m=65536,t=4,p=1$Zk5FdW9hd0hhYy9adG1iQw$VGOF5LK30weGgauYz80aAZ3eHVU1AhAjHZnq3L819KU","email":"kunszt.norbert@gmail.com"}]
+[
+    {
+        "id": "63107234b9cb6",
+        "firstName": "Kunszt",
+        "lastName": "Norbert",
+        "password": "$argon2i$v=19$m=65536,t=4,p=1$NWxjaUgvblZPUFEvaVBxcw$MbLFbXSjy2/MFxQk7n1zjTvken3yesiugCDXSXrqet0",
+        "email": "kunszt.norbert@gmail.com"
+    }
+]

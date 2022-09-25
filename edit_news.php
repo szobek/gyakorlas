@@ -38,7 +38,7 @@ $img_class = new Image();
     <div class="container my-4">
         <div class="row">
             <div class="col">
-                <form action="save_news.php" method="post" class="news-form" enctype="multipart/form-data">
+                <form action="save" method="post" class="news-form" enctype="multipart/form-data">
 
                     <label for="title">title</label>
                     <div class="input-group mb-3">
@@ -80,8 +80,8 @@ $img_class = new Image();
                         CKEDITOR.replace('content', {
                             height: 400,
                             removeButtons: 'Source, Form,Checkbox,PasteText, PasteFromWord,Table,About',
-                            filebrowserBrowseUrl: "/list_image.php",
-                            filebrowserUploadUrl: "/media.php"
+                            filebrowserBrowseUrl: "/list_image",
+                            filebrowserUploadUrl: "/image_up"
                         });
                     </script>
                     <br>
@@ -99,7 +99,7 @@ $img_class = new Image();
                     <input type="checkbox"  hidden name="modify-image" id="modify-image"><br>
 <p class="text-right">
 
-    <button class="btn btn-primary">
+    <button class="btn btn-primary" name="editnews">
         <i class="fa fa-file-text" aria-hidden="true"></i>
     </button>
 </p>

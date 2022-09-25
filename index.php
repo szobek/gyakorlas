@@ -1,74 +1,44 @@
 <?php
+    $pages = [
+        ""=>"news.php",
+        "/"=>"news.php",
+        "author"=>"author-profile.php",
+        "one"=>"one_news.php",
+        "list"=>"list_news.php",
+        "login"=>"login.php",
+        "logout"=>"logout.php",
+        "news_by_keyword"=>"news_by_keyword.php",
+        "save"=>"save_news.php",
+        "me"=>"user-profile.php",
+        "save"=>"save_news.php",
+        "edit"=>"edit_news.php",
+        "save"=>"save_news.php",
+        "new"=>"edit_news.php",
+        "list_image"=>"list_image.php",
+        "image_up"=>"media.php",
+    ];
 
-include_once "load.php";
+    function checkUri($uri){
+        global $pages;
 
-$news_class = new  News;
-$image = new Image;
-$page = (isset($_REQUEST["page"])) ? $_REQUEST["page"] : 1;
-/* var_dump($page);
-die(); */
-?>
-<!DOCTYPE html>
-<html lang="en">
+        foreach ($pages as $item=>$file) {
+            if($item===$uri){
+                return true;
+            }
+        }
+        return false;
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>hírek</title>
-    <?php include_once "header.php";
-    echo $news_class->head_meta_desc("hírek");
-    ?>
-</head>
+    }
+    
 
-<body>
-    <?php include_once "menu.php"; ?>
-    <div class="container">
-        <div class="row">
-            <div class="col text-center">
-
-                <h1>Főoldal</h1>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col d-flex justify-content-center news-container p-3">
-                <?php
-                $news = $news_class->show_sliced_news($page);
-                foreach ($news as $n) :
-                ?>
-                    <div class="card">
-                        <?php $image->seo_image($n->image_url, $n->image_alt); ?>
-
-                        <div class="card-header">
-                            <?php echo mb_strimwidth($n->lead, 0, 60, "...")  ?>
-                        </div>
-                        <div class="card-body">
-                            <p class="card-text"><?php echo mb_strimwidth($n->content, 0, 160, "...")  ?></p>
-                        </div>
-                        <div class="card-footer text-center">
-
-                            <a class="btn my-btn " href="<?php echo "one_news.php?id=" . $n->id ?>">Tovább</a>
-                        </div>
-                    </div>
-                <?php
-                endforeach;
-
-                ?>
-            </div>
-        </div>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col mt-4 paginator">
-                <?php
-                $news_class->show_pagination($page);
-                ?>
-                <div class="up">
-                <i class="fa fa-arrow-up" aria-hidden="true"></i>
-                </div>
-            </div>
-        </div>
-    </div>
-    <?php
-
-    include "footer.php"; ?>
+    $request = explode("?",$_SERVER['REQUEST_URI'])[0];
+    $request = substr($request,1);
+   
+    if(!checkUri($request)){
+        require_once "404.php";die();
+    }
+foreach ($pages as $uri => $file) {
+    if($request === $uri && file_exists($file) && is_readable($file)){
+        require_once $file;
+    }
+}
